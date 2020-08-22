@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatExpansionModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

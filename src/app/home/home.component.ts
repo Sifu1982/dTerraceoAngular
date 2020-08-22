@@ -11,15 +11,12 @@ export class HomeComponent implements OnInit {
 
   fomularioBusquedaAvanzada: FormGroup;
 
-  // arrDistrito: String[];
   arrBarrio: String[];
 
   constructor(private terrazasService: TerrazasService) {
 
     this.fomularioBusquedaAvanzada = new FormGroup({
-      // distrito: new FormControl('', [
 
-      // ]),
       barrio: new FormControl('', [
 
       ]),
@@ -31,7 +28,7 @@ export class HomeComponent implements OnInit {
       ]),
     });
 
-    // this.arrDistrito = [];
+
     this.arrBarrio = [''];
 
   }
@@ -41,15 +38,11 @@ export class HomeComponent implements OnInit {
     const arrayTerrazasCarousel = this.terrazasService.getArrayTerrazasCarousel();
 
     for (const terraza of arrayTerrazasCarousel) {
-      // if (this.arrDistrito.findIndex(distrito => distrito === terraza.desc_distrito_local) === -1) {
-      //   this.arrDistrito.push(terraza.desc_distrito_local);
-      // }
+
       if (this.arrBarrio.findIndex(barrio => barrio === terraza.desc_barrio_local) === -1) {
         this.arrBarrio.push(terraza.desc_barrio_local);
       }
     }
-
-    console.log(this.arrBarrio);
 
 
   }
