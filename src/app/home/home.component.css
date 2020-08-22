@@ -17,23 +17,39 @@
 } */
 
 #buscador {
-    height: 40vh;
+    min-height: 40vh;
+}
+
+.mat-expansion-panel {
+    background: transparent;
+}
+
+.mat-expansion-panel-header-description {
+    color: #FA573A;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    margin-right: 0;
+}
+
+.mat-expansion-panel {
+    color: white;
 }
 
 @media (min-width: 480px) {
     #buscador {
-        height: 55vh;
+        min-height: 55vh;
     }
 }
 
 @media (min-width: 1300px) {
     #buscador {
-        height: 60vh;
+        min-height: 60vh;
     }
 }
 
 @media (min-width: 1600px) {
     #buscador {
-        height: 65vh;
+        min-height: 65vh;
     }
 }
