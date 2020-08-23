@@ -15,8 +15,20 @@ export class Terraza {
     DESC_NOMBRE: string;
     nom_terraza: string;
     num_terraza: number;
+    desc_ubicacion_terraza: string;
+    hora_ini_LJ_es: Date;
+    hora_fin_LJ_es: Date;
+    hora_ini_LJ_ra: Date;
+    hora_fin_LJ_ra: Date;
+    hora_ini_VS_es: Date;
+    hora_fin_VS_es: Date;
+    hora_ini_VS_ra: Date;
+    hora_fin_VS_ra: Date;
+    mesas_es: number;
+    sillas_es: number;
 
-    constructor(id_terraza = 0, id_distrito_local = 0, desc_distrito_local = '', id_barrio_local = 0, desc_barrio_local = '', Cod_Postal = 0, coordenada_x_local = '', coordenada_y_local = '', id_situacion_local = 0, desc_situacion_local = '', rotulo = '', Superficie_ES = 0, DESC_CLASE = '', DESC_NOMBRE = '', nom_terraza = '', num_terraza = 1) {
+
+    constructor(id_terraza = 0, id_distrito_local = 0, desc_distrito_local = '', id_barrio_local = 0, desc_barrio_local = '', Cod_Postal = 0, coordenada_x_local = '', coordenada_y_local = '', id_situacion_local = 0, desc_situacion_local = '', rotulo = '', Superficie_ES = 0, DESC_CLASE = '', DESC_NOMBRE = '', nom_terraza = '', num_terraza = 1, desc_ubicacion_terraza = '', hora_ini_LJ_es, hora_fin_LJ_es, hora_ini_LJ_ra, hora_fin_LJ_ra, hora_ini_VS_es, hora_fin_VS_es, hora_ini_VS_ra, hora_fin_VS_ra, mesas_es, sillas_es) {
 
         this.id_terraza = id_terraza;
         this.id_distrito_local = id_distrito_local;
@@ -34,6 +46,17 @@ export class Terraza {
         this.DESC_NOMBRE = DESC_NOMBRE;
         this.nom_terraza = nom_terraza;
         this.num_terraza = num_terraza;
+        this.desc_ubicacion_terraza = desc_ubicacion_terraza;
+        this.hora_ini_LJ_es = hora_ini_LJ_es;
+        this.hora_fin_LJ_es = hora_fin_LJ_es;
+        this.hora_ini_LJ_ra = hora_ini_LJ_ra;
+        this.hora_fin_LJ_ra = hora_fin_LJ_ra;
+        this.hora_ini_VS_es = hora_ini_VS_es;
+        this.hora_fin_VS_es = hora_fin_VS_es;
+        this.hora_ini_VS_ra = hora_ini_VS_ra;
+        this.hora_fin_VS_ra = hora_fin_VS_ra;
+        this.mesas_es = mesas_es;
+        this.sillas_es = sillas_es;
 
     }
 

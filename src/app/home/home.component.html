@@ -1,6 +1,11 @@
 <div id="buscador" class="row justify-content-center align-items-end mb-5">
     <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
-        <input type="search" class="form-control form-control-lg" placeholder="Busca tu terraza...">
+        <form [formGroup]=fomularioBusquedaNombre (ngSubmit)="onSubmitBusquedaNombre()">
+            <div class="form-group">
+                <input type="search" class="form-control form-control-lg" placeholder="Busca tu terraza..."
+                    formControlName="nombre">
+            </div>
+        </form>
     </div>
 </div>
 
@@ -15,7 +20,7 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmit()">
+                <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmitBusquedaAvanzada()">
                     <div class="form-group">
                         <label for="">Barrio</label>
                         <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
@@ -44,7 +49,7 @@
             [pauseOnHover]="true" [wrap]="true" [activeId]="'slideOne'">
             <ng-template ngbSlide id="slideOne">
                 <div class="picsum-img-wrapper">
-                    <img class="img-fluid" src="../../assets/imgTerrazas/circuloDeBellasArtes_3.jpg"
+                    <img class="img-fluid" src="../../assets/imgTerrazas/circuloDeBellasArtes.jpg"
                         alt="Random first slide">
                 </div>
                 <div class="carousel-caption">
@@ -55,7 +60,7 @@
             <ng-template ngbSlide id="slideTwo">
                 <div class="picsum-img-wrapper">
 
-                    <img class="img-fluid" src="../../assets/imgTerrazas/laMuccaPez_3.jpg" alt="Random second slide">
+                    <img class="img-fluid" src="../../assets/imgTerrazas/laMuccaPez.jpg" alt="Random second slide">
                 </div>
                 <div class="carousel-caption">
                     <h3>LA MUCCA </h3>
@@ -64,20 +69,29 @@
             </ng-template>
             <ng-template ngbSlide id="slideThree">
                 <div class="picsum-img-wrapper">
-                    <img class="img-fluid" src="../../assets/imgTerrazas/hotelRoomMate_3.jpg" alt="Random third slide">
+                    <img class="img-fluid" src="../../assets/imgTerrazas/hotelRoomMate.jpg" alt="Random third slide">
                 </div>
                 <div class="carousel-caption">
                     <h3>HOTEL ROOM MATE</h3>
                     <p>Plaza de Pedro Zerolo, 12, 28004 Madrid</p>
                 </div>
             </ng-template>
-            <ng-template ngbSlide id="slidefour">
+            <ng-template ngbSlide id="slideFour">
                 <div class="picsum-img-wrapper">
-                    <img class="img-fluid" src="../../assets/imgTerrazas/ramses_3.jpg" alt="Random third slide">
+                    <img class="img-fluid" src="../../assets/imgTerrazas/ramses.jpg" alt="Random third slide">
                 </div>
                 <div class="carousel-caption">
                     <h3>RAMSES LIFE & FOOD</h3>
                     <p>Plaza de la Independencia, 4, 28001 Madrid</p>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide id="slideFive">
+                <div class="picsum-img-wrapper">
+                    <img class="img-fluid" src="../../assets/imgTerrazas/floridaRetiro.jpg" alt="Random third slide">
+                </div>
+                <div class="carousel-caption">
+                    <h3>FLORIDA RETIRO</h3>
+                    <p>Paseo Fernán Núñez, num 26, 28009 Madrid</p>
                 </div>
             </ng-template>
         </ngb-carousel>

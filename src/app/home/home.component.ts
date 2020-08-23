@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TerrazasService } from '../terrazas.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,19 @@ import { TerrazasService } from '../terrazas.service';
 })
 export class HomeComponent implements OnInit {
 
+  fomularioBusquedaNombre: FormGroup;
   fomularioBusquedaAvanzada: FormGroup;
 
   arrBarrio: String[];
+  arrNombreTerraza: String[];
 
   constructor(private terrazasService: TerrazasService) {
+
+    this.fomularioBusquedaNombre = new FormGroup({
+      nombre: new FormControl('', [
+
+      ])
+    });
 
     this.fomularioBusquedaAvanzada = new FormGroup({
 
@@ -30,6 +39,7 @@ export class HomeComponent implements OnInit {
 
 
     this.arrBarrio = [''];
+    this.arrNombreTerraza = [];
 
   }
 
@@ -37,13 +47,13 @@ export class HomeComponent implements OnInit {
 
     const arrayTerrazasCarousel = this.terrazasService.getArrayTerrazasCarousel();
 
-    for (const terraza of arrayTerrazasCarousel) {
+    const arrTemp = arrayTerrazasCarousel.map(terraza => terraza.desc_barrio_local);
+    this.arrBarrio = [...new Set(arrTemp)];
+    this.arrNombreTerraza = arrayTerrazasCarousel.map(terraza => terraza.rotulo);
 
-      if (this.arrBarrio.findIndex(barrio => barrio === terraza.desc_barrio_local) === -1) {
-        this.arrBarrio.push(terraza.desc_barrio_local);
-      }
-    }
-
+    this.fomularioBusquedaNombre.controls.nombre.valueChanges.pipe(debounceTime(500)).subscribe(value => {
+      console.log(this.arrNombreTerraza.find(nombre => nombre.toLowerCase().includes(value.toLowerCase())));
+    });
 
   }
 
@@ -55,7 +65,11 @@ export class HomeComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmitBusquedaNombre() {
+
+  }
+
+  onSubmitBusquedaAvanzada() {
     console.log(this.fomularioBusquedaAvanzada.value);
   }
 }
