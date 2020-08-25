@@ -3,19 +3,19 @@ export class Terraza {
     id_distrito_local: number;
     desc_distrito_local: string;
     id_barrio_local: number;
-    desc_barrio_local: string;
+    desc_barrio_local: string; //Nombre barrio
     Cod_Postal: number;
     coordenada_x_local: string;
     coordenada_y_local: string;
     id_situacion_local: number;
-    desc_situacion_local: string;
-    rotulo: string;
+    desc_situacion_local: string;   //Abierto, baja reunificación, cerrado y en obras
+    rotulo: string;             //Nombre de la terraza
     Superficie_ES: number;
-    DESC_CLASE: string;
-    DESC_NOMBRE: string;
-    nom_terraza: string;
-    num_terraza: number;
-    desc_ubicacion_terraza: string;
+    DESC_CLASE: string;         //Tipo vía
+    DESC_NOMBRE: string;        //Nombre de la vía
+    nom_terraza: string;        //Número
+    num_terraza: number;        //Dígito de la terraza
+    desc_ubicacion_terraza: string; //Descripción ubicación
     hora_ini_LJ_es: Date;
     hora_fin_LJ_es: Date;
     hora_ini_LJ_ra: Date;

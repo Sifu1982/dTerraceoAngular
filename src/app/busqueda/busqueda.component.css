@@ -1,0 +1,10 @@
+.home {
+    position: fixed;
+    top: 28px;
+    right: 100px;
+    z-index: 1;
+}
+
+.card-body {
+    color: black;
+}

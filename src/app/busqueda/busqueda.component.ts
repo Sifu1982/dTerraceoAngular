@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TerrazasService } from '../terrazas.service';
+import { Terraza } from '../models/terraza.model';
 
 @Component({
   selector: 'app-busqueda',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusquedaComponent implements OnInit {
 
-  constructor() { }
+  terrazas: Terraza[];
+
+  constructor(private terrazasService: TerrazasService) { }
 
   ngOnInit(): void {
+    this.terrazas = this.terrazasService.getArrayTerrazasCarousel()
   }
 
 }

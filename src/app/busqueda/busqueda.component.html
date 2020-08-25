@@ -1,1 +1,18 @@
-<p>busqueda works!</p>
+<button class="home btn btn-danger" type="button" [routerLink]="['home']">Home</button>
+<div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4" *ngFor="let terraza of terrazas">
+        <div class="card">
+            <a href="">
+                <img src="../../assets/imgTerrazas/circuloDeBellasArtes.jpg" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{terraza.rotulo}}</h5>
+                <p class="card-text">{{terraza.DESC_CLASE}} {{terraza.DESC_NOMBRE}} {{terraza.nom_terraza}}
+                    {{terraza.num_terraza}}</p>
+                <a href="">
+                    <p class="card-text">Distancia a posición usuario</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
