@@ -1,11 +1,21 @@
-<div id="buscador" class="row justify-content-center align-items-end mb-5">
-    <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
-        <form [formGroup]=fomularioBusquedaNombre (ngSubmit)="onSubmitBusquedaNombre()">
-            <div class="form-group">
-                <input type="search" class="form-control form-control-lg" placeholder="Busca tu terraza..."
-                    formControlName="nombre">
-            </div>
-        </form>
+<div id="wrapper" class="row justify-content-center align-items-end mb-5">
+    <div id="buscador" class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
+
+        <ng-autocomplete id="autocomplete" [data]="arrTempterrazas" [searchKeyword]="keyword"
+            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+            placeHolder="Introduce el nombre de la terraza..." minQueryLength="3">
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.rotulo"></a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+            <!-- <div [innerHTML]="notFound"></div> -->
+            <div>No localizo ese nombre</div>
+        </ng-template>
+
     </div>
 </div>
 

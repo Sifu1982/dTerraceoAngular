@@ -1,9 +1,14 @@
-#buscador {
+#wrapper {
     min-height: 75vh;
+}
+
+#autocomplete {
+    color: black;
 }
 
 .mat-expansion-panel {
     background: transparent;
+    color: white;
 }
 
 .mat-expansion-panel-header-description {
@@ -12,8 +17,4 @@
     text-align: center;
     justify-content: center;
     margin-right: 0;
-}
-
-.mat-expansion-panel {
-    color: white;
 }
