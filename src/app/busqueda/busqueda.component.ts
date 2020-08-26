@@ -14,7 +14,7 @@ export class BusquedaComponent implements OnInit {
   constructor(private terrazasService: TerrazasService) { }
 
   ngOnInit(): void {
-    this.terrazas = this.terrazasService.getArrayTerrazasCarousel()
+    this.terrazas = this.terrazasService.getArrayTerrazasCarousel();
   }
 
 }
