@@ -1,17 +1,22 @@
 <button class="home btn btn-danger" type="button" [routerLink]="['home']">Home</button>
-<div class="row row-cols-1 row-cols-md-3">
+<!-- Card Bootstrap que se itera -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
     <div class="col mb-4" *ngFor="let terraza of terrazas">
-        <div class="card">
-            <a href="">
-                <img src="../../assets/imgTerrazas/circuloDeBellasArtes.jpg" class="card-img-top" alt="...">
+        <div class="card h-100">
+            <a [routerLink]="['/detalle',terraza.id_terraza]">
+                <img src="../../assets/imgTerrazas/circuloDeBellasArtes.jpg" class="card-img-top"
+                    alt="{{terraza.rotulo}}">
             </a>
             <div class="card-body">
                 <h5 class="card-title">{{terraza.rotulo}}</h5>
                 <p class="card-text">{{terraza.DESC_CLASE}} {{terraza.DESC_NOMBRE}} {{terraza.nom_terraza}}
                     {{terraza.num_terraza}}</p>
-                <a href="">
-                    <p class="card-text">Distancia a posición usuario</p>
-                </a>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum dolores maxime quisquam vitae ullam
+                    minus, esse voluptate, veniam, molestias vel sint quibusdam expedita autem. Voluptatum dolorem
+                    quis facilis! Eligendi, distinctio.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted"><a href="">Distancia a posición usuario</a></small>
             </div>
         </div>
     </div>
