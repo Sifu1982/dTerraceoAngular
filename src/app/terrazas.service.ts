@@ -20,13 +20,31 @@ export class TerrazasService {
 
   }
 
-  getArrayTerrazasCarousel(): Terraza[] {
-    return this.arrayTerrazasCarousel;
+
+
+  getNombresTerrazas(): Promise<String[]> {
+    return new Promise((resolve, reject) => {
+      resolve(this.arrayTerrazasCarousel.map(terraza => terraza.rotulo));
+    });
   }
 
-  buscarTerrazaPorNombre(pNombre: string): Promise<Terraza[]> {
+  getBarriosTerrazas(): Promise<String[]> {
+    return new Promise((resolve, reject) => {
+      resolve(this.arrayTerrazasCarousel.map(terraza => terraza.desc_barrio_local));
+    });
+  }
+
+  getTerrazaPorNombre(pNombre: string): Promise<Terraza[]> {
     return new Promise((resolve, reject) => {
       resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.rotulo.toLowerCase().includes(pNombre.toLowerCase())));
     });
   }
+
+  getTerrazaPorBarrio(pBarrio: string): Promise<Terraza[]> {
+    return new Promise((resolve, reject) => {
+      resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(pBarrio.toLowerCase())));
+    });
+  }
+
+
 }
