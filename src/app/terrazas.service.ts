@@ -24,9 +24,9 @@ export class TerrazasService {
     return this.arrayTerrazasCarousel;
   }
 
-  buscarTerrazaPorNombre(pNombre: string): Promise<Terraza> {
+  buscarTerrazaPorNombre(pNombre: string): Promise<Terraza[]> {
     return new Promise((resolve, reject) => {
-      resolve();
+      resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.rotulo.toLowerCase().includes(pNombre.toLowerCase())));
     });
   }
 }
