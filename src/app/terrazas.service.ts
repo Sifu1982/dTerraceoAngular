@@ -20,29 +20,52 @@ export class TerrazasService {
 
   }
 
-
-
-  getNombresTerrazas(): Promise<String[]> {
-    return new Promise((resolve, reject) => {
-      resolve(this.arrayTerrazasCarousel.map(terraza => terraza.rotulo));
-    });
+  getArrayTerrazasCarousel() {
+    return this.arrayTerrazasCarousel;
   }
 
+
+  // getNombresTerrazas(): Promise<String[]> {
+  //   return new Promise((resolve, reject) => {
+  //     resolve(this.arrayTerrazasCarousel.map(terraza => terraza.rotulo));
+  //   });
+  // }
+
+  // Método usado en home.component.ts para rellenar el array de barrios en el ngoninit
   getBarriosTerrazas(): Promise<String[]> {
     return new Promise((resolve, reject) => {
       resolve(this.arrayTerrazasCarousel.map(terraza => terraza.desc_barrio_local));
     });
   }
 
-  getTerrazaPorNombre(pNombre: string): Promise<Terraza[]> {
+  // Método usado en home.component.ts en el buscador por nombre
+  getTerrazasPorNombre(pNombre: string): Promise<Terraza[]> {
     return new Promise((resolve, reject) => {
       resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.rotulo.toLowerCase().includes(pNombre.toLowerCase())));
     });
   }
 
-  getTerrazaPorBarrio(pBarrio: string): Promise<Terraza[]> {
+  // Método usado en home.component.ts en el buscador avanzado (búsqueda por barrio)
+  getTerrazasPorBarrio(pBarrio: string): Promise<Terraza[]> {
     return new Promise((resolve, reject) => {
       resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(pBarrio.toLowerCase())));
+    });
+  }
+
+  // Método usado en busqueda.component.ts para obtener las terrazas a mostrar
+  getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
+    return new Promise((resolve, reject) => {
+      for (const item of pArray) {
+        if (item.desc_barrio_local) {
+          resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(item.desc_barrio_local.toLowerCase())));
+        }
+        else if (item.calle) {
+          resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.DESC_NOMBRE.toLowerCase().includes(item.calle.toLowerCase())));
+        }
+        else {
+          reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
+        }
+      }
     });
   }
 

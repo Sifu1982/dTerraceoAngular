@@ -13,7 +13,7 @@
 
         <ng-template #notFoundTemplate let-notFound>
             <!-- <div [innerHTML]="notFound"></div> -->
-            <div>No localizo ese nombre</div>
+            <!-- <div>No localizo ese nombre</div> -->
         </ng-template>
 
     </div>
@@ -32,13 +32,13 @@
 
                 <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmitBusquedaAvanzada()">
                     <div class="form-group">
-                        <label for="">Barrio</label>
+                        <label for="">Selecciona barrio</label>
                         <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
                             <option [value]="barrio" *ngFor=" let barrio of arrBarrio">{{barrio}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Calle</label>
+                        <label for="">Introduce nombre de la calle</label>
                         <input type="text" class="form-control" formControlName="calle"
                             placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
 
