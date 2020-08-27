@@ -1,9 +1,9 @@
 <div id="wrapper" class="row justify-content-center align-items-end mb-5">
     <div id="buscador" class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
 
-        <ng-autocomplete id="autocomplete" [data]="arrTempterrazas" [searchKeyword]="keyword"
-            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
-            [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+        <ng-autocomplete class="autocomplete" [data]="arrTerrazasPorNombre" [searchKeyword]="keywordNombre"
+            (selected)='onSelectNombre($event)' (inputChanged)='onBusquedaNombre($event)'
+            (inputFocused)='onFocoNombre($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
             placeHolder="Introduce el nombre de la terraza..." minQueryLength="3">
         </ng-autocomplete>
 
@@ -13,7 +13,7 @@
 
         <ng-template #notFoundTemplate let-notFound>
             <!-- <div [innerHTML]="notFound"></div> -->
-            <div>No localizo ese nombre</div>
+            <!-- <div>No localizo ese nombre</div> -->
         </ng-template>
 
     </div>
@@ -32,22 +32,25 @@
 
                 <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmitBusquedaAvanzada()">
                     <div class="form-group">
-                        <label for="">Barrio</label>
+                        <label for="">Selecciona barrio</label>
                         <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
                             <option [value]="barrio" *ngFor=" let barrio of arrBarrio">{{barrio}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="">Calle</label>
+                        <label for="">Introduce nombre de la calle</label>
                         <input type="text" class="form-control" formControlName="calle"
-                            placeholder="Nombre de la calle...">
+                            placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
+
                         <!-- [attr.disabled]="(fomularioBusquedaAvanzada.controls.barrio.value!=''?'disabled':null)"" -->
+
                     </div>
                     <div class="form-group">
                         <mat-slide-toggle color="warn" formControlName="cercaDeMi">Cerca de mí</mat-slide-toggle>
                     </div>
                     <input type="submit" value="Buscar" class="btn btn-danger btn-block">
                 </form>
+
             </mat-expansion-panel>
         </mat-accordion>
     </div>

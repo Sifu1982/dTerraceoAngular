@@ -13,8 +13,15 @@ export class BusquedaComponent implements OnInit {
 
   constructor(private terrazasService: TerrazasService) { }
 
-  ngOnInit(): void {
-    this.terrazas = this.terrazasService.getArrayTerrazasCarousel();
+  async ngOnInit() {
+    // this.terrazas = this.terrazasService.getArrayTerrazasCarousel();
+    const objLocalStorage = JSON.parse(localStorage.getItem("arrBusqueda"));
+    try {
+      this.terrazas = await this.terrazasService.getTerrazasBusqueda(objLocalStorage);
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
 }
