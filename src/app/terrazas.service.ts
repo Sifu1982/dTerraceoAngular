@@ -53,32 +53,55 @@ export class TerrazasService {
   // };
   // CONTRA BBDD:
   getTerrazasPorNombre(pNombre: string): Promise<Terraza[]> {
-    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/${pNombre}`).toPromise();
+    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas//name/${pNombre}`).toPromise();
   };
 
 
   // Método usado en home.component.ts en el buscador avanzado (búsqueda por barrio)
+  // CONTRA ARRAY LOCAL:
+  // getTerrazasPorBarrio(pBarrio: string): Promise<Terraza[]> {
+  //   return new Promise((resolve, reject) => {
+  //     resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(pBarrio.toLowerCase())));
+  //   });
+  // };
+  // CONTRA BBDD:
   getTerrazasPorBarrio(pBarrio: string): Promise<Terraza[]> {
-    return new Promise((resolve, reject) => {
-      resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(pBarrio.toLowerCase())));
-    });
+    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas//barrio/${pBarrio}`).toPromise();
   };
 
+
   // Método usado en busqueda.component.ts para obtener las terrazas a mostrar
+  // CONTRA ARRAY LOCAL:
+  // getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
+  //   return new Promise((resolve, reject) => {
+  //     for (const item of pArray) {
+  //       if (item.desc_barrio_local) {
+  //         resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(item.desc_barrio_local.toLowerCase())));
+  //       }
+  //       else if (item.calle) {
+  //         resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.DESC_NOMBRE.toLowerCase().includes(item.calle.toLowerCase())));
+  //       }
+  //       else {
+  //         reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
+  //       }
+  //     }
+  //   });
+  // };
+  // CONTRA BBDD:
   getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
-    return new Promise((resolve, reject) => {
-      for (const item of pArray) {
-        if (item.desc_barrio_local) {
-          resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(item.desc_barrio_local.toLowerCase())));
-        }
-        else if (item.calle) {
-          resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.DESC_NOMBRE.toLowerCase().includes(item.calle.toLowerCase())));
-        }
-        else {
+
+    for (const item of pArray) {
+      if (item.desc_barrio_local) {
+        return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/barrio/${item.desc_barrio_local}`).toPromise();
+      } else if (item.calle) {
+
+      } else {
+        return new Promise((resolve, reject) => {
           reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
-        }
+        });
       }
-    });
+    }
+
   };
 
 

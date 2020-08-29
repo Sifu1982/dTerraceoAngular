@@ -3,8 +3,7 @@
     <div class="col mb-4" *ngFor="let terraza of terrazas">
         <div class="card h-100">
             <a [routerLink]="['/detalle',terraza.id_terraza]">
-                <img src="../../assets/imgTerrazas/circuloDeBellasArtes.jpg" class="card-img-top"
-                    alt="{{terraza.rotulo}}">
+                <img [src]=terraza.streetView class="card-img-top" alt="{{terraza.rotulo}}">
             </a>
             <div class="card-body">
                 <h5 class="card-title">{{terraza.rotulo}}</h5>
