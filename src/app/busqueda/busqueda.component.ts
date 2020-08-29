@@ -15,7 +15,7 @@ export class BusquedaComponent implements OnInit {
 
   async ngOnInit() {
     // this.terrazas = this.terrazasService.getArrayTerrazasCarousel();
-    const objLocalStorage = JSON.parse(localStorage.getItem("arrBusqueda"));
+    const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
     try {
       this.terrazas = await this.terrazasService.getTerrazasBusqueda(objLocalStorage);
     } catch (err) {

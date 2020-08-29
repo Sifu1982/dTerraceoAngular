@@ -8,7 +8,7 @@
         </ng-autocomplete>
 
         <ng-template #itemTemplate let-item>
-            <a [innerHTML]="item.rotulo"></a>
+            <a [innerHTML]="item.mostrarEnBusqueda"></a>
         </ng-template>
 
         <ng-template #notFoundTemplate let-notFound>
@@ -34,7 +34,8 @@
                     <div class="form-group">
                         <label for="">Selecciona barrio</label>
                         <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
-                            <option [value]="barrio" *ngFor=" let barrio of arrBarrio">{{barrio}}</option>
+                            <option [value]="item.desc_barrio_local" *ngFor=" let item of arrBarrio">
+                                {{item.desc_barrio_local}}</option>
                         </select>
                     </div>
                     <div class="form-group">

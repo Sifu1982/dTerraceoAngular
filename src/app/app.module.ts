@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     MatSlideToggleModule,
     NgbModule,
     AutocompleteLibModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   arrTerrazasPorNombre: Terraza[];
   keywordNombre: string;
 
-  arrBarrio: String[];
+  arrBarrio: any[];
 
   constructor(private terrazasService: TerrazasService, private router: Router) {
 
@@ -68,16 +68,16 @@ export class HomeComponent implements OnInit {
 
   //*METODOS DE BUSQUEDA AVANZADA
   onChangeBarrio($event) {
-    // console.log($event.target.value);
+    console.log($event.target.value);
     let arrBusqueda = [];
     let item = {
-      desc_barrio_local: $event.target.value
+      desc_barrio_local: $event.target.value.trim()
     }
     arrBusqueda.push(item);
-    localStorage.setItem("arrBusqueda", JSON.stringify(arrBusqueda));
+    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
     this.router.navigate(['/busqueda']);
     // console.log('arrBusqueda', arrBusqueda);
-    // console.log('localStorage', localStorage.getItem("arrBusqueda"));
+    // console.log('localStorage', localStorage.getItem("dTerraceo"));
 
   }
 
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
     // console.log(this.fomularioBusquedaAvanzada.value);
     let arrBusqueda = [];
     arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
-    localStorage.setItem("arrBusqueda", JSON.stringify(arrBusqueda));
+    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
     this.router.navigate(['/busqueda']);
   }
 

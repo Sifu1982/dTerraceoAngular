@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Terraza } from './models/terraza.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class TerrazasService {
 
   arrayTerrazasCarousel: Terraza[];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 
     this.arrayTerrazasCarousel = [
       new Terraza(3678, 1, 'CENTRO', 103, 'CORTES', 28014, '440914,59', '4474421,52', 1, 'Abierto', 'CIRCULO DE BELLAS ARTES DE MADRID', 93.24, 'CALLE', 'ALCALA', 'NUM', 42, 'Acera', '8:00:00', '1:30:00', '8:00:00', '1:00:00', '8:00:00', '1:30:00', '8:00:00', '1:00:00', 26, 91),
@@ -32,25 +33,36 @@ export class TerrazasService {
   // }
 
   // Método usado en home.component.ts para rellenar el array de barrios en el ngoninit
-  getBarriosTerrazas(): Promise<String[]> {
-    return new Promise((resolve, reject) => {
-      resolve(this.arrayTerrazasCarousel.map(terraza => terraza.desc_barrio_local));
-    });
-  }
+  // CONTRA ARRAY LOCAL:
+  // getBarriosTerrazas(): Promise<String[]> {
+  //   return new Promise((resolve, reject) => {
+  //     resolve(this.arrayTerrazasCarousel.map(terraza => terraza.desc_barrio_local));
+  //   });
+  // };
+  // CONTRA BBDD:
+  getBarriosTerrazas(): Promise<any[]> {
+    return this.httpClient.get<any[]>(`http://localhost:3000/api/terrazas/barrios`).toPromise();
+  };
 
   // Método usado en home.component.ts en el buscador por nombre
+  // CONTRA ARRAY LOCAL:
+  // getTerrazasPorNombre(pNombre: string): Promise<Terraza[]> {
+  //   return new Promise((resolve, reject) => {
+  //     resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.rotulo.toLowerCase().includes(pNombre.toLowerCase())));
+  //   });
+  // };
+  // CONTRA BBDD:
   getTerrazasPorNombre(pNombre: string): Promise<Terraza[]> {
-    return new Promise((resolve, reject) => {
-      resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.rotulo.toLowerCase().includes(pNombre.toLowerCase())));
-    });
-  }
+    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/${pNombre}`).toPromise();
+  };
+
 
   // Método usado en home.component.ts en el buscador avanzado (búsqueda por barrio)
   getTerrazasPorBarrio(pBarrio: string): Promise<Terraza[]> {
     return new Promise((resolve, reject) => {
       resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.desc_barrio_local.toLowerCase().includes(pBarrio.toLowerCase())));
     });
-  }
+  };
 
   // Método usado en busqueda.component.ts para obtener las terrazas a mostrar
   getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
@@ -67,7 +79,7 @@ export class TerrazasService {
         }
       }
     });
-  }
+  };
 
 
 }
