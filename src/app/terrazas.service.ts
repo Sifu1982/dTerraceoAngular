@@ -94,7 +94,7 @@ export class TerrazasService {
       if (item.desc_barrio_local) {
         return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/barrio/${item.desc_barrio_local}`).toPromise();
       } else if (item.calle) {
-
+        return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/calle/${item.calle}`).toPromise();
       } else {
         return new Promise((resolve, reject) => {
           reject(console.log('ERROR: no se ha podido obtener la búsqueda'));

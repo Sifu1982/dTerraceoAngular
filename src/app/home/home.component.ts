@@ -47,19 +47,12 @@ export class HomeComponent implements OnInit {
 
   //*METODOS DE BUSQUEDA POR NOMBRE
   onSelectNombre(item) {
-    console.log(item);
-    let arrayResult = [];
-    // arrayResult.push(item);
-    // localStorage.setItem("arrayResult", JSON.stringify(arrayResult));
     this.router.navigate(['/detalle', item.id_terraza]);
   }
 
   async onBusquedaNombre(nombre) {
-
     console.log(nombre);
-
     this.arrTerrazasPorNombre = await this.terrazasService.getTerrazasPorNombre(nombre);
-
   }
 
   onFocoNombre(e) {
@@ -76,9 +69,6 @@ export class HomeComponent implements OnInit {
     arrBusqueda.push(item);
     localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
     this.router.navigate(['/busqueda']);
-    // console.log('arrBusqueda', arrBusqueda);
-    // console.log('localStorage', localStorage.getItem("dTerraceo"));
-
   }
 
   onKeypressCalle($event) {
@@ -87,7 +77,6 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmitBusquedaAvanzada() {
-    // console.log(this.fomularioBusquedaAvanzada.value);
     let arrBusqueda = [];
     arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
     localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
