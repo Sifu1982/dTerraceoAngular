@@ -10,10 +10,13 @@ export class AppComponent {
   title = 'dTerraceoAngular';
 
   desHome: Boolean;
+
   constructor(private router: Router) {
     this.desHome = true;
   }
   ngOnInit() {
+
+    //Desactivar el botón home en  "/home"
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url === '/home') {
