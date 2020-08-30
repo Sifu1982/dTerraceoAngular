@@ -104,5 +104,12 @@ export class TerrazasService {
 
   };
 
+  //Método usado en detalle.component.ts para obtener la terraza a mostrar por su Id
+  getTerrazaById(pId: number): Promise<Terraza[]> {
+    return new Promise((resolve, reject) => {
+      resolve(this.arrayTerrazasCarousel.filter(terraza => terraza.id_terraza = pId));
+    });
+  }
+
 
 }

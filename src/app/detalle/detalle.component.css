@@ -1,0 +1,15 @@
+.prueba {
+    color: white;
+}
+
+.mapa {
+    height: 150px;
+    background-color: white;
+    margin-bottom: 10px;
+    color: black;
+    border: 1px solid black;
+}
+
+.card {
+    color: black;
+}
