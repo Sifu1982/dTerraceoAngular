@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit {
 
     this.arrBarrio = await this.terrazasService.getBarriosTerrazas();
 
+    navigator.geolocation.getCurrentPosition(position => {
+      this.posicionActualLat = position.coords.latitude;
+      this.posicionActualLng = position.coords.longitude;
+    });
+
   }
 
 
@@ -67,7 +72,9 @@ export class HomeComponent implements OnInit {
     console.log($event.target.value);
     let arrBusqueda = [];
     let item = {
-      desc_barrio_local: $event.target.value.trim()
+      desc_barrio_local: $event.target.value.trim(),
+      latitude: this.posicionActualLat,
+      longitude: this.posicionActualLng
     }
     arrBusqueda.push(item);
     localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
@@ -85,9 +92,9 @@ export class HomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.posicionActualLat = position.coords.latitude;
         this.posicionActualLng = position.coords.longitude;
-      })
+      });
     }
-  }
+  };
 
   onSubmitBusquedaAvanzada() {
     let arrBusqueda = [];

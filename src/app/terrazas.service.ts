@@ -98,7 +98,11 @@ export class TerrazasService {
         };
         return this.httpClient.post<Terraza[]>(`http://localhost:3000/api/terrazas/`, body).toPromise();
       } else if (item.desc_barrio_local) {
-        return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/barrio/${item.desc_barrio_local}`).toPromise();
+        const body = {
+          latitude: item.latitude,
+          longitude: item.longitude
+        };
+        return this.httpClient.post<Terraza[]>(`http://localhost:3000/api/terrazas/barrio/${item.desc_barrio_local}`, body).toPromise();
       } else if (item.calle) {
         return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/calle/${item.calle}`).toPromise();
       } else {
