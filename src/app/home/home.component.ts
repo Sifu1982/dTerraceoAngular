@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
 
   arrBarrio: any[];
 
+  posicionActualLat: number;
+  posicionActualLng: number;
+
   constructor(private terrazasService: TerrazasService, private router: Router) {
 
     this.fomularioBusquedaAvanzada = new FormGroup({
@@ -76,8 +79,20 @@ export class HomeComponent implements OnInit {
     // console.log($event.target.value);
   }
 
+  onChange($event) {
+    console.log($event.checked);
+    if ($event.checked) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.posicionActualLat = position.coords.latitude;
+        this.posicionActualLng = position.coords.longitude;
+      })
+    }
+  }
+
   onSubmitBusquedaAvanzada() {
     let arrBusqueda = [];
+    this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
+    this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
     arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
     localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
     this.router.navigate(['/busqueda']);

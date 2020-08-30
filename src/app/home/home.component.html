@@ -47,7 +47,8 @@
 
                     </div>
                     <div class="form-group">
-                        <mat-slide-toggle color="warn" formControlName="cercaDeMi">Cerca de mí</mat-slide-toggle>
+                        <mat-slide-toggle color="warn" formControlName="cercaDeMi" (change)="onChange($event)">Cerca de
+                            mí</mat-slide-toggle>
                     </div>
                     <input type="submit" value="Buscar" class="btn btn-danger btn-block">
                 </form>
