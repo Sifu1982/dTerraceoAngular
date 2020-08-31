@@ -8,8 +8,11 @@ import { HttpClient } from '@angular/common/http';
 export class TerrazasService {
 
   arrayTerrazasCarousel: Terraza[];
+  baseUrl: String;
 
   constructor(private httpClient: HttpClient) {
+
+    this.baseUrl = 'http://localhost:3000/api/terrazas';
 
     this.arrayTerrazasCarousel = [
       new Terraza(3678, 1, 'CENTRO', 103, 'CORTES', 28014, '440914,59', '4474421,52', 1, 'Abierto', 'CIRCULO DE BELLAS ARTES DE MADRID', 93.24, 'CALLE', 'ALCALA', 'NUM', 42, 'Acera', '8:00:00', '1:30:00', '8:00:00', '1:00:00', '8:00:00', '1:30:00', '8:00:00', '1:00:00', 26, 91),
@@ -41,7 +44,7 @@ export class TerrazasService {
   // };
   // CONTRA BBDD:
   getBarriosTerrazas(): Promise<any[]> {
-    return this.httpClient.get<any[]>(`http://localhost:3000/api/terrazas/barrios`).toPromise();
+    return this.httpClient.get<any[]>(`${this.baseUrl}/barrios`).toPromise();
   };
 
   // Método usado en home.component.ts en el buscador por nombre
@@ -53,7 +56,7 @@ export class TerrazasService {
   // };
   // CONTRA BBDD:
   getTerrazasPorNombre(pNombre: string): Promise<Terraza[]> {
-    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas//name/${pNombre}`).toPromise();
+    return this.httpClient.get<Terraza[]>(`${this.baseUrl}/name/${pNombre}`).toPromise();
   };
 
 
@@ -66,7 +69,7 @@ export class TerrazasService {
   // };
   // CONTRA BBDD:
   getTerrazasPorBarrio(pBarrio: string): Promise<Terraza[]> {
-    return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas//barrio/${pBarrio}`).toPromise();
+    return this.httpClient.get<Terraza[]>(`${this.baseUrl}/barrio/${pBarrio}`).toPromise();
   };
 
 
@@ -91,20 +94,25 @@ export class TerrazasService {
   getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
 
     for (const item of pArray) {
+
       if (item.cercaDeMi === true && item.latitude && item.longitude) {
         const body = {
           latitude: item.latitude,
           longitude: item.longitude
         };
-        return this.httpClient.post<Terraza[]>(`http://localhost:3000/api/terrazas/`, body).toPromise();
+        return this.httpClient.post<Terraza[]>(`${this.baseUrl}`, body).toPromise();
       } else if (item.desc_barrio_local) {
         const body = {
           latitude: item.latitude,
           longitude: item.longitude
         };
-        return this.httpClient.post<Terraza[]>(`http://localhost:3000/api/terrazas/barrio/${item.desc_barrio_local}`, body).toPromise();
+        return this.httpClient.post<Terraza[]>(`${this.baseUrl}/barrio/${item.desc_barrio_local}`, body).toPromise();
       } else if (item.calle) {
-        return this.httpClient.get<Terraza[]>(`http://localhost:3000/api/terrazas/calle/${item.calle}`).toPromise();
+        const body = {
+          latitude: item.latitude,
+          longitude: item.longitude
+        };
+        return this.httpClient.post<Terraza[]>(`${this.baseUrl}/calle/${item.calle}`, body).toPromise();
       } else {
         return new Promise((resolve, reject) => {
           reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
