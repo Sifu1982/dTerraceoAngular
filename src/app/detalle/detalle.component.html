@@ -3,12 +3,6 @@
         MAPA
     </div>
 </div>
-
-<div class="prueba">
-    <p>{{hola}}</p>
-    <p>{{terraza[0] | json}} Hola 2</p>
-</div>
-
 <div class="row justify-content-center">
     <div class="card mb-4 col-10 p-3">
         <div class="row justify-content-center">
@@ -17,20 +11,24 @@
             </div>
             <div class="card col-12 col-md-6">
                 <div class="card-header m-1 mt-3">
-                    <h5 class="card-title text-center">ROTULO</h5>
+                    <h5 class="card-title text-center">{{terraza.rotulo}}</h5>
                 </div>
                 <div class="row card-body justify-content-around">
                     <div class="card col-5">
-                        <p class="card-text">DIRECCION</p>
-                        <p class="card-text">NUMERO DE MESAS Y DE SILLAS</p>
-                        <p class="card-text">DESCRIPCIÓN UBICACIÓN</p>
+                        <p class="card-text">{{terraza.desc_clase}} {{terraza.desc_nombre}} {{terraza.nom_terraza}}
+                            {{terraza.num_terraza}}</p>
+                        <p class="card-text">NUMERO DE MESAS: {{terraza.mesas_es}}</p>
+                        <p class="card-text">NUMERO DE SILLAS: {{terraza.sillas_es}}</p>
+                        <p class="card-text">Tipo: {{terraza.desc_ubicacion_terraza}}</p>
                     </div>
                     <div class="card col-5">
                         <a href="tel:+">
                             <h6 class="card-title">TELÉFONO</h6>
                         </a>
-                        <p class="card-text">HORARIO ESTACIONAL L-J</p>
-                        <p class="card-text">HORARIO FINDE</p>
+                        <p class="card-text">HORARIO L-J: {{terraza.hora_ini_lj_es}} -
+                            {{terraza.hora_fin_lj_es}}</p>
+                        <p class="card-text">HORARIO FIN DE SEMANA: {{terraza.hora_ini_vs_es}} -
+                            {{terraza.hora_fin_vs_es}}</p>
                     </div>
                 </div>
                 <div class="card-footer row m-1 mb-3">

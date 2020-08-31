@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Terraza } from '../models/terraza.model';
 import { TerrazasService } from '../terrazas.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle',
@@ -9,14 +10,21 @@ import { TerrazasService } from '../terrazas.service';
 })
 export class DetalleComponent implements OnInit {
 
-  terraza: Terraza[];
-  hola: String;
+  terraza: Terraza;
 
-  constructor(private terrazasService: TerrazasService,) { }
+  constructor(
+    private terrazasService: TerrazasService,
+    private activatedRoute: ActivatedRoute
+  ) {
 
-  ngOnInit(): void {
-    this.terraza = this.terrazasService.getTerrazaById(3891)[0]; //Pasar no un 3891, si no el Id de la terraza, con Router, como en app.component.ts
-    this.hola = 'HOLA MUNDO'
   }
 
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(async params => {
+      this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza));
+      console.log(this.terraza);
+    });
+  }
 }
+
+
