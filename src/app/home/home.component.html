@@ -1,64 +1,69 @@
-<div id="wrapper" class="row justify-content-center align-items-end mb-5">
-    <div id="buscador" class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
+<div id="wrapperBuscador" class="row flex-column justify-content-center align-items-center mb-5">
+    <div id="buscador" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7">
+        <div class="crimson">
+            <div class="tomato">
+                <ng-autocomplete class="autocomplete" [data]="arrTerrazasPorNombre" [searchKeyword]="keywordNombre"
+                    (selected)='onSelectNombre($event)' (inputChanged)='onBusquedaNombre($event)'
+                    (inputFocused)='onFocoNombre($event)' [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" placeHolder="Introduce el nombre de la terraza..."
+                    minQueryLength="3">
+                </ng-autocomplete>
 
-        <ng-autocomplete class="autocomplete" [data]="arrTerrazasPorNombre" [searchKeyword]="keywordNombre"
-            (selected)='onSelectNombre($event)' (inputChanged)='onBusquedaNombre($event)'
-            (inputFocused)='onFocoNombre($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-            placeHolder="Introduce el nombre de la terraza..." minQueryLength="3">
-        </ng-autocomplete>
+                <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.mostrarEnBusqueda"></a>
+                </ng-template>
 
-        <ng-template #itemTemplate let-item>
-            <a [innerHTML]="item.mostrarEnBusqueda"></a>
-        </ng-template>
-
-        <ng-template #notFoundTemplate let-notFound>
-            <!-- <div [innerHTML]="notFound"></div> -->
-            <!-- <div>No localizo ese nombre</div> -->
-        </ng-template>
-
+                <ng-template #notFoundTemplate let-notFound>
+                    <!-- <div [innerHTML]="notFound"></div> -->
+                    <!-- <div>No localizo ese nombre</div> -->
+                </ng-template>
+            </div>
+        </div>
     </div>
+
+
+    <div id="buscadorAvanzado" class="row justify-content-center align-items-end mb-5">
+        <div class="col-12">
+
+            <mat-accordion id="acordeon">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <i class="fas fa-angle-double-down"></i>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmitBusquedaAvanzada()">
+                        <div class="form-group">
+                            <label><span> Selecciona barrio</span></label>
+                            <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
+                                <option [value]="item.desc_barrio_local" *ngFor=" let item of arrBarrio">
+                                    {{item.desc_barrio_local}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><span>Introduce nombre de la calle</span> </label>
+                            <input type="text" class="form-control" formControlName="calle"
+                                placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
+
+                            <!-- [attr.disabled]="(fomularioBusquedaAvanzada.controls.barrio.value!=''?'disabled':null)"" -->
+
+                        </div>
+                        <div class="form-group">
+                            <mat-slide-toggle color="warn" formControlName="cercaDeMi" (change)="onChange($event)">
+                                <span>Cerca de mí</span></mat-slide-toggle>
+                        </div>
+                        <input type="submit" value="Buscar" class="btn btn-danger btn-block">
+                    </form>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+
 </div>
 
-<div id="buscadorAvanzado" class="row justify-content-center align-items-end mb-5">
-    <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5">
-
-        <mat-accordion id="acordeon">
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-description>
-                        <i class="fas fa-angle-double-down"></i>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <form [formGroup]=fomularioBusquedaAvanzada (ngSubmit)="onSubmitBusquedaAvanzada()">
-                    <div class="form-group">
-                        <label for="">Selecciona barrio</label>
-                        <select (change)="onChangeBarrio($event)" class="custom-select" formControlName="barrio">
-                            <option [value]="item.desc_barrio_local" *ngFor=" let item of arrBarrio">
-                                {{item.desc_barrio_local}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Introduce nombre de la calle</label>
-                        <input type="text" class="form-control" formControlName="calle"
-                            placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
-
-                        <!-- [attr.disabled]="(fomularioBusquedaAvanzada.controls.barrio.value!=''?'disabled':null)"" -->
-
-                    </div>
-                    <div class="form-group">
-                        <mat-slide-toggle color="warn" formControlName="cercaDeMi" (change)="onChange($event)">Cerca de
-                            mí</mat-slide-toggle>
-                    </div>
-                    <input type="submit" value="Buscar" class="btn btn-danger btn-block">
-                </form>
-
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
-</div>
-
-<div class="wrapper row justify-content-center">
+<div id="carousel" class="wrapper row justify-content-center">
     <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
         <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" interval="5000" [keyboard]="true"
             [pauseOnHover]="true" [wrap]="true" [activeId]="'slideOne'">
@@ -68,7 +73,7 @@
                         alt="Random first slide">
                 </div>
                 <div class="carousel-caption">
-                    <h3>CIRCULO DE BELLAS ARTES DE MADRID</h3>
+                    <h4>CIRCULO DE BELLAS ARTES DE MADRID</h4>
                     <p>Calle de Alcalá, 42, 28014 Madrid</p>
                 </div>
             </ng-template>
@@ -78,7 +83,7 @@
                     <img class="img-fluid" src="../../assets/imgTerrazas/laMuccaPez.jpg" alt="Random second slide">
                 </div>
                 <div class="carousel-caption">
-                    <h3>LA MUCCA </h3>
+                    <h4>LA MUCCA </h4>
                     <p>Plaza de Carlos Cambronero, 4, 28004 Madrid</p>
                 </div>
             </ng-template>
@@ -87,7 +92,7 @@
                     <img class="img-fluid" src="../../assets/imgTerrazas/hotelRoomMate.jpg" alt="Random third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h3>HOTEL ROOM MATE</h3>
+                    <h4>HOTEL ROOM MATE</h4>
                     <p>Plaza de Pedro Zerolo, 12, 28004 Madrid</p>
                 </div>
             </ng-template>
@@ -96,7 +101,7 @@
                     <img class="img-fluid" src="../../assets/imgTerrazas/ramses.jpg" alt="Random third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h3>RAMSES LIFE & FOOD</h3>
+                    <h4>RAMSES LIFE & FOOD</h4>
                     <p>Plaza de la Independencia, 4, 28001 Madrid</p>
                 </div>
             </ng-template>
@@ -105,7 +110,7 @@
                     <img class="img-fluid" src="../../assets/imgTerrazas/floridaRetiro.jpg" alt="Random third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h3>FLORIDA RETIRO</h3>
+                    <h4>FLORIDA RETIRO</h4>
                     <p>Paseo Fernán Núñez, num 26, 28009 Madrid</p>
                 </div>
             </ng-template>
