@@ -54,8 +54,15 @@ export class HomeComponent implements OnInit {
 
 
   //*METODOS DE BUSQUEDA POR NOMBRE
-  onSelectNombre(item) {
-    this.router.navigate(['/detalle', item.id_terraza]);
+  onSelectNombre(terraza) {
+    let arrBusqueda = [];
+    let item = {
+      latitude: this.posicionActualLat,
+      longitude: this.posicionActualLng
+    }
+    arrBusqueda.push(item);
+    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+    this.router.navigate(['/detalle', terraza.id_terraza]);
   }
 
   async onBusquedaNombre(nombre) {

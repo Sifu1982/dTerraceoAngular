@@ -93,39 +93,40 @@ export class TerrazasService {
   // CONTRA BBDD:
   getTerrazasBusqueda(pArray: any[]): Promise<Terraza[]> {
 
-    for (const item of pArray) {
-
-      if (item.cercaDeMi === true && item.latitude && item.longitude) {
-        const body = {
-          latitude: item.latitude,
-          longitude: item.longitude
-        };
-        return this.httpClient.post<Terraza[]>(`${this.baseUrl}`, body).toPromise();
-      } else if (item.desc_barrio_local) {
-        const body = {
-          latitude: item.latitude,
-          longitude: item.longitude
-        };
-        return this.httpClient.post<Terraza[]>(`${this.baseUrl}/barrio/${item.desc_barrio_local}`, body).toPromise();
-      } else if (item.calle) {
-        const body = {
-          latitude: item.latitude,
-          longitude: item.longitude
-        };
-        return this.httpClient.post<Terraza[]>(`${this.baseUrl}/calle/${item.calle}`, body).toPromise();
-      } else {
-        return new Promise((resolve, reject) => {
-          reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
-        });
-      }
+    if (pArray[0].cercaDeMi === true && pArray[0].latitude && pArray[0].longitude) {
+      const body = {
+        latitude: pArray[0].latitude,
+        longitude: pArray[0].longitude
+      };
+      return this.httpClient.post<Terraza[]>(`${this.baseUrl}`, body).toPromise();
+    } else if (pArray[0].desc_barrio_local) {
+      const body = {
+        latitude: pArray[0].latitude,
+        longitude: pArray[0].longitude
+      };
+      return this.httpClient.post<Terraza[]>(`${this.baseUrl}/barrio/${pArray[0].desc_barrio_local}`, body).toPromise();
+    } else if (pArray[0].calle) {
+      const body = {
+        latitude: pArray[0].latitude,
+        longitude: pArray[0].longitude
+      };
+      return this.httpClient.post<Terraza[]>(`${this.baseUrl}/calle/${pArray[0].calle}`, body).toPromise();
+    } else {
+      return new Promise((resolve, reject) => {
+        reject(console.log('ERROR: no se ha podido obtener la búsqueda'));
+      });
     }
 
   };
 
 
   //Contra BBDD
-  getTerrazaById(pId: number): Promise<Terraza> {
-    return this.httpClient.get<Terraza>(`http://localhost:3000/api/terrazas/id/${pId}`).toPromise();
+  getTerrazaById(pId: number, pArray: any[]): Promise<Terraza> {
+    const body = {
+      latitude: pArray[0].latitude,
+      longitude: pArray[0].longitude
+    }
+    return this.httpClient.post<Terraza>(`http://localhost:3000/api/terrazas/id/${pId}`, body).toPromise();
   };
 
 

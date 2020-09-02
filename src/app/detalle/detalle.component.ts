@@ -21,10 +21,16 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(async params => {
-      this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza));
-      console.log(this.terraza);
+      const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
+      try {
+        this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza), objLocalStorage);
+        console.log(this.terraza);
+      } catch (err) {
+        console.log(err);
+      }
     });
   }
+
 }
 
 
