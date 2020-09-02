@@ -1,5 +1,5 @@
 <!-- Card Bootstrap que se itera -->
-<div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+<div class="row row-cols-1  row-cols-md-2 row-cols-lg-3 row-cols-xl-4 wraper">
     <div class="col mb-4" *ngFor="let terraza of terrazas">
         <div class="card">
             <div class="card-header h-100">
@@ -16,8 +16,8 @@
                 <div class="col-12">
                     <a alt="" class="btn btn-block btn-danger">¡Llévame allí!</a>
                 </div>
-                <div class="col-12 text-center">
-                    <small class="text-muted">Distancia a posición usuario: {{terraza.distancia}} m.</small>
+                <div class="col-12 text-center pt-2">
+                    <small class="text-muted">Distancia a tu posición: {{terraza.distancia}} m.</small>
                 </div>
             </div>
         </div>

@@ -27,16 +27,16 @@
                         </a>
                         <p class="card-text">HORARIO L-J: {{terraza.hora_ini_lj_es | slice:0:-3}} -
                             {{terraza.hora_fin_lj_es | slice:0:-3}}</p>
-                        <p class="card-text">HORARIO FIN DE SEMANA: {{terraza.hora_ini_vs_es | slice:0:-3}} -
+                        <p class="card-text">FIN DE SEMANA: {{terraza.hora_ini_vs_es | slice:0:-3}} -
                             {{terraza.hora_fin_vs_es | slice:0:-3}}</p>
                     </div>
                 </div>
                 <div class="card-footer row m-1 mb-3">
-                    <div class="col-6">
-                        <small class="text-muted">Distancia a posición usuario</small>
-                    </div>
-                    <div class="col-6">
+                    <div class="col-12">
                         <a alt="" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                    </div>
+                    <div class="col-12 text-center pt-2">
+                        <small class="text-muted">Distancia a tu posición: {{terraza.distancia}}</small>
                     </div>
                 </div>
             </div>
