@@ -1,20 +1,25 @@
 <!-- Card Bootstrap que se itera -->
-<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
     <div class="col mb-4" *ngFor="let terraza of terrazas">
         <div class="card h-100">
-            <a [routerLink]="['/detalle',terraza.id_terraza]">
-                <img [src]=terraza.streetView class="card-img-top" alt="{{terraza.rotulo}}">
-            </a>
+            <div class="card-header">
+                <a [routerLink]="['/detalle',terraza.id_terraza]">
+                    <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
+                </a>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{{terraza.rotulo}}</h5>
                 <p class="card-text">{{terraza.desc_clase}} {{terraza.desc_nombre}} {{terraza.nom_terraza}}
                     {{terraza.num_terraza}}</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum dolores maxime quisquam vitae ullam
-                    minus, esse voluptate, veniam, molestias vel sint quibusdam expedita autem. Voluptatum dolorem
-                    quis facilis! Eligendi, distinctio.</p>
             </div>
-            <div class="card-footer">
-                <small class="text-muted"><a href="">Distancia a posición usuario: {{terraza.distancia}} m.</a></small>
+            <div class="row card-footer">
+                <div class="col-6">
+                    <small class="text-muted"><a href="">Distancia a posición usuario: {{terraza.distancia}}
+                            m.</a></small>
+                </div>
+                <div class="col-6">
+                    <a alt="" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                </div>
             </div>
         </div>
     </div>
