@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { TerrazasService } from '../terrazas.service';
 import { Terraza } from '../models/terraza.model';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-home',
@@ -56,13 +58,20 @@ export class HomeComponent implements OnInit {
   //*METODOS DE BUSQUEDA POR NOMBRE
   onSelectNombre(terraza) {
     let arrBusqueda = [];
-    let item = {
-      latitude: this.posicionActualLat,
-      longitude: this.posicionActualLng
+
+    if (this.posicionActualLat == undefined || this.posicionActualLat == undefined) {
+      Swal.fire('Ubicación no detectada', 'Para el correcto funcionamiento, necesitamos poder acceder a la ubicación del dispositivo', 'warning');
+      this.router.navigate(['/home']);
+    } else {
+      let item = {
+        latitude: this.posicionActualLat,
+        longitude: this.posicionActualLng
+      }
+      console.log(item);
+      arrBusqueda.push(item);
+      localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+      this.router.navigate(['/detalle', terraza.id_terraza]);
     }
-    arrBusqueda.push(item);
-    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
-    this.router.navigate(['/detalle', terraza.id_terraza]);
   }
 
   async onBusquedaNombre(nombre) {

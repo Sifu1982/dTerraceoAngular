@@ -16,7 +16,7 @@ export class DetalleComponent implements OnInit {
     private terrazasService: TerrazasService,
     private activatedRoute: ActivatedRoute
   ) {
-
+    this.terraza = new Terraza();
   }
 
   ngOnInit() {

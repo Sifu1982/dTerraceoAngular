@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AvisoLegalComponent } from './aviso-legal/aviso-legal.component';
 import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-datos.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-
     AutocompleteLibModule,
     HttpClientModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
