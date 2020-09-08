@@ -17,6 +17,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
     AutocompleteLibModule,
     HttpClientModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
