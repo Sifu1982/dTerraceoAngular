@@ -55,14 +55,18 @@ export class HomeComponent implements OnInit {
   }
 
 
-  //*METODOS DE BUSQUEDA POR NOMBRE
+  /*
+  *METODOS DE BUSQUEDA POR NOMBRE
+  */
+
+  async onBusquedaNombre(nombre) {
+    console.log(nombre);
+    this.arrTerrazasPorNombre = await this.terrazasService.getTerrazasPorNombre(nombre);
+  };
+
   onSelectNombre(terraza) {
     let arrBusqueda = [];
-
-    if (this.posicionActualLat == undefined || this.posicionActualLat == undefined) {
-      Swal.fire('Ubicación no detectada', 'Para el correcto funcionamiento, necesitamos poder acceder a la ubicación del dispositivo', 'warning');
-      this.router.navigate(['/home']);
-    } else {
+    if (this.checkUbicacion()) {
       let item = {
         latitude: this.posicionActualLat,
         longitude: this.posicionActualLng
@@ -71,39 +75,36 @@ export class HomeComponent implements OnInit {
       arrBusqueda.push(item);
       localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
       this.router.navigate(['/detalle', terraza.id_terraza]);
+    } else {
+      this.alertaNoUbicacion();
     }
-  }
-
-  async onBusquedaNombre(nombre) {
-    console.log(nombre);
-    this.arrTerrazasPorNombre = await this.terrazasService.getTerrazasPorNombre(nombre);
-  }
+  };
 
   onFocoNombre(e) {
-
-  }
+  };
 
   //*METODOS DE BUSQUEDA AVANZADA
   onChangeBarrio($event) {
-    console.log($event.target.value);
-    let arrBusqueda = [];
-    let item = {
-      desc_barrio_local: $event.target.value.trim(),
-      latitude: this.posicionActualLat,
-      longitude: this.posicionActualLng
-    }
-    arrBusqueda.push(item);
-    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
-    this.router.navigate(['/busqueda']);
-  }
-
-  onKeypressCalle($event) {
-    // console.log($event.code);
     // console.log($event.target.value);
-  }
+    if (this.checkUbicacion()) {
+      let arrBusqueda = [];
+      let item = {
+        desc_barrio_local: $event.target.value.trim(),
+        latitude: this.posicionActualLat,
+        longitude: this.posicionActualLng
+      }
+      arrBusqueda.push(item);
+      localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+      this.router.navigate(['/busqueda']);
+    } else {
+      this.alertaNoUbicacion();
+    }
+  };
+
+  onKeypressCalle($event) { };
 
   onChange($event) {
-    console.log($event.checked);
+    // console.log($event.checked);
     if ($event.checked) {
       navigator.geolocation.getCurrentPosition(position => {
         this.posicionActualLat = position.coords.latitude;
@@ -113,12 +114,37 @@ export class HomeComponent implements OnInit {
   };
 
   onSubmitBusquedaAvanzada() {
-    let arrBusqueda = [];
-    this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
-    this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
-    arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
-    localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
-    this.router.navigate(['/busqueda']);
-  }
+    if (this.checkUbicacion()) {
+      let arrBusqueda = [];
+      this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
+      this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
+      arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
+      localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+      this.router.navigate(['/busqueda']);
+    } else {
+      this.alertaNoUbicacion();
+    }
+  };
+
+  /*
+  *HELPERS
+  */
+
+  checkUbicacion() {
+    if (this.posicionActualLat == undefined || this.posicionActualLat == undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  alertaNoUbicacion() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Ubicación no detectada',
+      text: 'Para el correcto funcionamiento, es necesario poder acceder a la ubicación del dispositivo',
+    });
+    this.router.navigate(['/home']);
+  };
 
 }
