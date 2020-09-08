@@ -17,6 +17,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AvisoLegalComponent } from './aviso-legal/aviso-legal.component';
+import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-datos.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MatIconModule } from '@angular/material/icon';
     BusquedaComponent,
     DetalleComponent,
     LoginComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    AvisoLegalComponent,
+    ProteccionDeDatosComponent
   ],
   imports: [
     BrowserModule,
