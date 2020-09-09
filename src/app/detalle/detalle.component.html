@@ -1,3 +1,12 @@
+<!-- <agm-map [latitude]="terraza.coordenada_x_local" [zoom]="17" [longitude]="terraza.coordenada_y_local">
+    <agm-marker [latitude]="terraza.coordenada_x_local" [longitude]="terraza.coordenada_y_local">
+        <agm-info-window>
+            <h5>{{terraza.rotulo}}</h5>
+            <p>Teléfono: {{terraza.googlePlacesData.telefono}}</p>
+        </agm-info-window>
+    </agm-marker>
+</agm-map> -->
+
 <div class="row justify-content-center">
     <div class="card col-10 mt-4 mb-4">
         <div class="row justify-content-center">
@@ -6,28 +15,36 @@
                     <h5 class="card-title text-center pt-4 pb-2">{{terraza.rotulo}}</h5>
                 </div>
                 <div class="card-body">
-                    <img [src]="terraza.streetView" class="card-img rounded" [alt]="terraza.rotulo">
-                </div>
-                <div class="card-body">
-                    <img [src]="terraza.googlePlacesData.imagenes[4]" class="card-img rounded" [alt]="terraza.rotulo">
+                    <img [src]="terraza.streetView" class="card-img rounded mb-4" [alt]="terraza.rotulo">
+                    <img [src]="terraza.googlePlacesData.imagenes[0]" class="card-img rounded" [alt]="terraza.rotulo">
                 </div>
             </div>
             <div class="card col-12 col-md-6">
                 <div class="card-header row ml-1 mr-1 mt-4">
                     <div class="col-12">
-                        <a alt="" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                        <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza.coordenada_x_local+','+terraza.coordenada_y_local"
+                            target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
                     </div>
                     <div class="col-12 text-center pt-2">
                         <small class="text-muted">Distancia a tu posición: {{terraza.distancia}}</small>
                     </div>
                 </div>
-                <div class="row card-body justify-content-around">
+                <div class="row card-body">
                     <div class="col-12">
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=40.714%2c%20-73.998&zoom=12&size=600x400&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyAOm-KmhlnD0YZjTqaHnRkPoSvA3ieyzRc"
-                            class="card-img rounded" [alt]="terraza.rotulo">
+                        <agm-map [latitude]="terraza.coordenada_x_local" [zoom]="16"
+                            [longitude]="terraza.coordenada_y_local">
+                            <agm-marker [latitude]="terraza.coordenada_x_local"
+                                [longitude]="terraza.coordenada_y_local">
+                                <agm-info-window>
+                                    <p>{{terraza.rotulo}}</p>
+                                    <p>{{terraza.googlePlacesData.telefono}}</p>
+                                </agm-info-window>
+                            </agm-marker>
+                        </agm-map>
                     </div>
                     <div class="card mt-4 col-12 p-2">
-                        <a href="tel:+">
+                        <a [href]="'tel:0034' + terraza.googlePlacesData.telefono"
+                            *ngIf="terraza.googlePlacesData.telefono!==''">
                             <h6 class="card-title">{{terraza.googlePlacesData.telefono}}</h6>
                         </a>
                         <p class="card-text">HORARIO L-J: {{terraza.hora_ini_lj_es | slice:0:-3}} -

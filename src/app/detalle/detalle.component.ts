@@ -12,6 +12,11 @@ export class DetalleComponent implements OnInit {
 
   terraza: Terraza;
 
+  // Variable para zoom del mapa
+  zoom: number;
+  // Variables para la geolocalización
+  lat: number;
+  lng: number;
 
 
   constructor(
@@ -19,9 +24,18 @@ export class DetalleComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.terraza = new Terraza();
+
+    this.zoom = 17;
   }
 
   ngOnInit() {
+    // Conseguir la posición del usuario
+    navigator.geolocation.getCurrentPosition(position => {
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+    });
+
+
     this.activatedRoute.params.subscribe(async params => {
       const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
       try {
