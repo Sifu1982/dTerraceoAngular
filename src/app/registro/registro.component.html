@@ -1,0 +1,36 @@
+<div class="container">
+    <h4 class="mt-4 mb-2 rounded p-2">Registro de usuarios</h4>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="rounded p-3">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" formControlName="username">
+            <p class="error mt-3" *ngIf="formulario.controls.username.errors && formulario.controls.username.touched">
+                El campo Username es obligatorio.
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <p class="error mt-3" *ngIf="formulario.controls.email.errors && formulario.controls.email.touched">
+                El campo Email es obligatorio y debe de tener estructura de email.
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password">
+            <p class="error mt-3" *ngIf="formulario.controls.password.errors && formulario.controls.password.touched">
+                El campo Password es obligatorio y debe de tener un mínimo de 5 caracteres.
+            </p>
+        </div>
+        <button type="submit" class="btn btn-danger" [disabled]="!formulario.valid">Submit</button>
+    </form>
+
+    <div class="errores mt-3">
+        <ul class="list-group">
+            <li *ngFor="let error of errores" class="list-group-item rounded mb-2"><span class="error">Error:
+                </span>{{error.msg}}
+            </li>
+        </ul>
+    </div>
+
+</div>
