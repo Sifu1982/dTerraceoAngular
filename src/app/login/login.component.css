@@ -1,0 +1,12 @@
+form {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+.list-group-item {
+    color: floralwhite;
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+.error {
+    color: red;
+}

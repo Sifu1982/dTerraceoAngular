@@ -27,7 +27,7 @@ export class RegistroComponent implements OnInit {
       password: new FormControl('', [
         Validators.required,
         Validators.pattern(/^([a-zA-Z0-9@*#]{5,50})$/)
-      ]),
+      ])
     });
   }
 
@@ -54,7 +54,7 @@ export class RegistroComponent implements OnInit {
       Toast.fire({
         icon: 'success',
         title: '<h2>Usuario registrado corectamente.</h2>'
-      })
+      });
 
       this.router.navigate(['/login']);
 

@@ -21,7 +21,9 @@ import { AvisoLegalComponent } from './aviso-legal/aviso-legal.component';
 import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-datos.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { RegistroComponent } from './registro/registro.component';
     SweetAlert2Module,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDqHGMmFo29gKPVgYFZKH98bVV0yZhFovY'
-    })
+    }),
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
