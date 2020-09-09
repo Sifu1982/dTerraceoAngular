@@ -1,0 +1,27 @@
+h4 {
+    color: #FA573A;
+    background-color: rgba(50, 50, 50, 0.9);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+form {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+.list-group-item {
+    color: floralwhite;
+    background-color: rgba(50, 50, 50, 0.9);
+}
+
+input.ng-valid.ng-touched {
+    border: 4px solid lightgreen;
+}
+
+input.ng-invalid.ng-touched {
+    border: 4px solid crimson;
+}
+
+.error {
+    color: red;
+}

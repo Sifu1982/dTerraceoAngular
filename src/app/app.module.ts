@@ -21,6 +21,7 @@ import { AvisoLegalComponent } from './aviso-legal/aviso-legal.component';
 import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-datos.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AgmCoreModule } from '@agm/core';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AgmCoreModule } from '@agm/core';
     LoginComponent,
     UsuarioComponent,
     AvisoLegalComponent,
-    ProteccionDeDatosComponent
+    ProteccionDeDatosComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

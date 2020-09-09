@@ -9,7 +9,8 @@
             <div>
                 <button type="button" class="home btn btn-outline-danger btn-lg mx-3" type="button"
                     [routerLink]="['home']" *ngIf="desHome">Home</button>
-                <button type="button" class="btn btn-outline-danger btn-lg" [routerLink]="['login']">Login</button>
+                <button type="button" class="btn btn-outline-danger btn-lg" [routerLink]="['login']"
+                    *ngIf="desLogin">Login</button>
             </div>
         </nav>
     </header>

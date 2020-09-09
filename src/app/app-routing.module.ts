@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AvisoLegalComponent } from './aviso-legal/aviso-legal.component';
 import { ProteccionDeDatosComponent } from './proteccion-de-datos/proteccion-de-datos.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'usuario/:idUsuario', component: UsuarioComponent },
   { path: 'avisoLegal', component: AvisoLegalComponent },
   { path: 'proteccionDeDatos', component: ProteccionDeDatosComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: '**', redirectTo: '/home' }
 ];
 
