@@ -26,9 +26,9 @@ export class Terraza {
     hora_fin_vs_ra: Date;
     mesas_es: number;
     sillas_es: number;
-    streetView: String;
+    streetView: string;
     distancia: number;
-    googlePlacesData: {};
+    googlePlacesData: { telefono: string, imagenes: string[] };
 
 
     // constructor(id_terraza = 0, id_distrito_local = 0, desc_distrito_local = '', id_barrio_local = 0, desc_barrio_local = '', cod_Postal = 0, coordenada_x_local = '', coordenada_y_local = '', id_situacion_local = 0, desc_situacion_local = '', rotulo = '', superficie_es = 0, desc_clase = '', desc_nombre = '', nom_terraza = '', num_terraza = 1, desc_ubicacion_terraza = '', hora_ini_lj_es, hora_fin_lj_es, hora_ini_lj_ra, hora_fin_lj_ra, hora_ini_vs_es, hora_fin_vs_es, hora_ini_vs_ra, hora_fin_vs_ra, mesas_es, sillas_es, streetView = '', distancia = 0) {

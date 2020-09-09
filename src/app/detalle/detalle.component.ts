@@ -12,6 +12,8 @@ export class DetalleComponent implements OnInit {
 
   terraza: Terraza;
 
+
+
   constructor(
     private terrazasService: TerrazasService,
     private activatedRoute: ActivatedRoute
