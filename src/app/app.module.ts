@@ -51,7 +51,7 @@ import { RegistroComponent } from './registro/registro.component';
     MatIconModule,
     SweetAlert2Module,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDqHGMmFo29gKPVgYFZKH98bVV0yZhFovY'
+      apiKey: ''
     }),
     GoogleMapsModule
   ],
