@@ -26,6 +26,7 @@ export class DetalleComponent implements OnInit {
     this.terraza = new Terraza();
 
     this.zoom = 17;
+
   }
 
   ngOnInit() {
