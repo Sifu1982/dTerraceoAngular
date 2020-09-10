@@ -23,6 +23,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
+import { environment } from './../environments/environment';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { RegistroComponent } from './registro/registro.component';
     MatIconModule,
     SweetAlert2Module,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: environment.GOOGLE_API_KEY
     }),
     GoogleMapsModule
   ],
