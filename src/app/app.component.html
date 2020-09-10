@@ -6,11 +6,14 @@
                     <span>Dterraceo<i class="fas fa-cocktail"></i></span>
                 </a>
             </div>
-            <div>
-                <button type="button" class="home btn btn-outline-danger btn-lg mx-3" type="button"
+            <div class="row justify-content-center align-items-center mr-1">
+                <button type="button" class="home btn btn-outline-danger btn-lg mx-1" type="button"
                     [routerLink]="['home']" *ngIf="desHome">Home</button>
-                <button type="button" class="btn btn-outline-danger btn-lg" [routerLink]="['login']"
+                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['login']"
                     *ngIf="desLogin">Login</button>
+                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['usuario', '1']">
+                    <i class="fas fa-user-circle"></i>
+                </button>
             </div>
         </nav>
     </header>

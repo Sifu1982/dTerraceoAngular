@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
       email: new FormControl(),
       password: new FormControl()
     });
+
+    this.errores = [];
   }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
     const response = await this.usuariosService.login(this.formulario.value);
     console.log(response);
     if (response['SUCCESS']) {
-      localStorage.setItem('token', response['token']);
+      sessionStorage.setItem('token', response['token']);
 
       const Toast = Swal.mixin({
         toast: true,
@@ -50,7 +52,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/usuario', response['id_usuario']]);
 
     } else {
-      this.errores.push(response);
+      this.errores = response;
+      console.log('errores: ', this.errores);
+
     }
   };
 

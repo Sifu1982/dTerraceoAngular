@@ -63,7 +63,7 @@ export class TerrazasService {
       latitude: pArray[0].latitude,
       longitude: pArray[0].longitude
     }
-    return this.httpClient.post<Terraza>(`http://localhost:3000/api/terrazas/id/${pId}`, body).toPromise();
+    return this.httpClient.post<Terraza>(`${this.baseUrl}/id/${pId}`, body).toPromise();
   };
 
 }

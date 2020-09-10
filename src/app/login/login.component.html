@@ -8,13 +8,17 @@
             <label>Password</label>
             <input type="password" class="form-control" formControlName="password">
         </div>
-        <button type="submit" class="btn btn-danger">Submit</button>
+        <div>
+            <button type="submit" class="btn btn-danger mr-2">Login</button>
+            Si no estás resgistrado, pincha <a [routerLink]="['/registro']">aquí</a>
+        </div>
     </form>
 
     <div class="errores mt-3">
         <ul class="list-group">
-            <li *ngFor="let error of errores" class="list-group-item rounded mb-2"><span class="error">Error:
-                </span>{{error.msg}}
+            <li *ngFor="let error of errores" class="list-group-item rounded mb-2">
+                <span class="error">Error: </span>
+                {{error?.msg}}
             </li>
         </ul>
     </div>

@@ -52,9 +52,9 @@ import { environment } from './../environments/environment';
     MatIconModule,
     SweetAlert2Module,
     AgmCoreModule.forRoot({
-      apiKey: environment.GOOGLE_API_KEY
+      // apiKey: environment.GOOGLE_API_KEY
     }),
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
