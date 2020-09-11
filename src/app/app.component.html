@@ -1,17 +1,21 @@
 <div class="container-fluid">
     <header>
-        <nav class="navbar navbar-dark bg-transparent p-4 row">
+        <nav class="navbar navbar-dark bg-transparent p-4 row animate__animated animate__backInDown animate__slower">
             <div>
-                <a id="logo" class="navbar-brand" [routerLink]="['home']">
+                <a id="logo" class="navbar-brand animate__animated animate__flash animate__delay-4s"
+                    [routerLink]="['home']">
                     <span>Dterraceo<i class="fas fa-cocktail"></i></span>
                 </a>
             </div>
             <div class="row justify-content-center align-items-center mr-1">
-                <button type="button" class="home btn btn-outline-danger btn-lg mx-1" type="button"
-                    [routerLink]="['home']" *ngIf="desHome">Home</button>
                 <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['login']"
-                    *ngIf="desLogin">Login</button>
-                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['usuario', '1']">
+                    *ngIf="desLogin && !userLogged" data-toggle="tooltip" data-placement="bottom"
+                    title="Ir a Login">Login</button>
+                <button type="button" class="home btn btn-outline-danger btn-lg mx-1" type="button"
+                    [routerLink]="['home']" *ngIf="desHome" data-toggle="tooltip" data-placement="bottom"
+                    title="Ir a Home">Home</button>
+                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['usuario', idUsuario]"
+                    *ngIf="userLogged" data-toggle="tooltip" data-placement="bottom" title="Perfil de usuario">
                     <i class="fas fa-user-circle"></i>
                 </button>
             </div>

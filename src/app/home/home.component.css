@@ -24,6 +24,10 @@
     color: white;
 }
 
+i {
+    font-size: 1.5rem;
+}
+
 .mat-expansion-panel-header-description {
     color: #FA573A;
     font-size: 1.7rem;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   desHome: Boolean;
   desLogin: Boolean;
   userLogged: Boolean;
+  idUsuario: String;
 
   constructor(private router: Router) {
     this.desHome = true;
@@ -19,14 +21,9 @@ export class AppComponent {
   }
   ngOnInit() {
 
-    //Desactivar el botón home en  "/home" y el botón ligin en "/login"
 
 
-    const token = sessionStorage.getItem('token');
-    if (token) {
-      this.userLogged = true;
-    }
-
+    //Desactivar el botón home en  "/home" y el botón login en "/login"
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         if (this.router.url === '/home') {
@@ -34,16 +31,21 @@ export class AppComponent {
         } else {
           this.desHome = true;
         };
-        if (this.userLogged == true) {
-          this.userLogged = false;
+        if (this.router.url === '/login') {
+          this.desLogin = false;
         } else {
-          if (this.router.url === '/login') {
-            this.desLogin = false;
-          } else {
-            this.desLogin = true;
-          };
-        }
+          this.desLogin = true;
+        };
 
+        const token = sessionStorage.getItem('token');
+        if (token != null) {
+          this.userLogged = true;
+          const jwt = new JwtHelperService();
+          const decodedToken = jwt.decodeToken(token);
+          this.idUsuario = decodedToken.userId
+          console.log('idUsuario', this.idUsuario);
+
+        }
       }
     });
   }
