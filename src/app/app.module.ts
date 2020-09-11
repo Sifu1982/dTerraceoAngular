@@ -24,7 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
-
+import { CarouselModule } from "ngx-carousel-lib";
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { environment } from './../environments/environment';
     AgmCoreModule.forRoot({
       // apiKey: environment.GOOGLE_API_KEY
     }),
-    GoogleMapsModule
+    GoogleMapsModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
