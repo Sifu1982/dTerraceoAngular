@@ -32,6 +32,8 @@
     "bootstrap": "^4.5.2",
     "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
+    "ng-simple-slideshow": "^1.2.9",
+    "ngx-carousel-lib": "^0.1.2",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.5",
