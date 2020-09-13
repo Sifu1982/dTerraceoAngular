@@ -1,3 +1,13 @@
+.container {
+    min-height: 75vh;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.wrapper {
+    width: 100%;
+}
+
 form {
     background-color: rgba(50, 50, 50, 0.9);
 }

@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid .flex-column justify-content-between">
     <header>
-        <nav class="navbar navbar-dark bg-transparent p-4 row animate__animated animate__backInDown animate__slower">
+        <nav class="navbar navbar-dark bg-transparent p-3 row animate__animated animate__backInDown animate__slower">
             <div>
                 <a id="logo" class="navbar-brand animate__animated animate__flash animate__delay-4s"
                     [routerLink]="['home']">
@@ -8,13 +8,12 @@
                 </a>
             </div>
             <div class="row justify-content-center align-items-center mr-1">
-                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['login']"
+                <button type="button" class="home btn btn-outline-danger mx-1" type="button" [routerLink]="['home']"
+                    *ngIf="desHome" data-toggle="tooltip" data-placement="bottom" title="Ir a Home">Home</button>
+                <button type="button" class="btn btn-outline-danger ml-1" [routerLink]="['login']"
                     *ngIf="desLogin && !userLogged" data-toggle="tooltip" data-placement="bottom"
                     title="Ir a Login">Login</button>
-                <button type="button" class="home btn btn-outline-danger btn-lg mx-1" type="button"
-                    [routerLink]="['home']" *ngIf="desHome" data-toggle="tooltip" data-placement="bottom"
-                    title="Ir a Home">Home</button>
-                <button type="button" class="btn btn-outline-danger btn-lg mx-1" [routerLink]="['usuario', idUsuario]"
+                <button type="button" class="btn btn-outline-danger ml-1" [routerLink]="['usuario', idUsuario]"
                     *ngIf="userLogged" data-toggle="tooltip" data-placement="bottom" title="Perfil de usuario">
                     <i class="fas fa-user-circle"></i>
                 </button>
@@ -23,17 +22,18 @@
     </header>
 
     <router-outlet></router-outlet>
+
+    <footer class="border-top border-secondary justify-content-between flex-wrap">
+        <div class="col-12 text-center my-2">
+            <a href="https://datos.madrid.es/portal/site/egob/" target="_blank"><img src="../assets/logo-madrid.png"
+                    alt="logo-madrid"></a>
+            Información obtenida de Open data Madrid
+        </div>
+        <div class="col-12 text-center mb-2">
+            <span>
+                <a class="text-muted" [routerLink]="['avisoLegal']"> Aviso legal</a>
+                <a class="text-muted" [routerLink]="['proteccionDeDatos']"> Proteccion de datos</a>
+            </span>
+        </div>
+    </footer>
 </div>
-<footer class="border-top border-secondary d-flex justify-content-between flex-wrap">
-    <div class="col-12 text-center my-3">
-        <a href="https://datos.madrid.es/portal/site/egob/" target="_blank"><img src="../assets/logo-madrid.png"
-                alt="logo-madrid"></a>
-        Información obtenida de Open data Madrid
-    </div>
-    <div class="col-12 text-center mb-3">
-        <span>
-            <a class="text-muted" [routerLink]="['avisoLegal']"> Aviso legal</a>
-            <a class="text-muted" [routerLink]="['proteccionDeDatos']"> Proteccion de datos</a>
-        </span>
-    </div>
-</footer>
