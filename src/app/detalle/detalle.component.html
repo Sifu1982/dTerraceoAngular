@@ -16,11 +16,11 @@
                             <ol class="carousel-indicators">
                                 <!-- attr. sintaxis necesaria para que Angular procese el binding a un atributo, sin producir ningún mensaje de error -->
                                 <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
-                                    *ngFor="let img of terraza.googlePlacesData.imagenes, let i=index"></li>
+                                    *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i=index"></li>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item" [ngClass]="{active: i===0}"
-                                    *ngFor="let img of terraza.googlePlacesData.imagenes, let i= index">
+                                    *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i= index">
                                     <img [src]="img" class="d-block w-100">
                                 </div>
                             </div>
@@ -86,14 +86,3 @@
         </div>
     </div>
 </div>
-
-<carousel-component>
-    <div class="item-carousel">a</div>
-    <div class="item-carousel">
-        <div class="b">
-            <img src="https://www.losminionsaldia.com/images/mas-minions/minion.png" />
-        </div>
-    </div>
-    <div class="item-carousel">c</div>
-    <div class="item-carousel">d</div>
-</carousel-component>
