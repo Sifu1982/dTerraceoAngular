@@ -1,5 +1,29 @@
 <div class="container d-flex align-items-center justify-content-center">
-    <div class="wrapper">
-        PERFIL DE USUARIO
+    <div class="favoritos">
+        <div>
+            <h4>Terrazas favoritas</h4>
+        </div>
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
+            <div class="col card-group mb-3" *ngFor="let terraza of arrFavoritos">
+                <div class="card">
+                    <a [routerLink]="['/detalle',terraza?.id_terraza]">
+                        <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
+                    </a>
+                    <div class="card-body">
+                        <h6 class="card-title">{{terraza?.rotulo}}</h6>
+                        <p class="card-text">{{terraza?.desc_clase}} {{terraza?.desc_nombre}} {{terraza?.nom_terraza}}
+                            {{terraza?.num_terraza}}</p>
+                    </div>
+                    <div class="row card-footer">
+                        <div class="col-12">
+                            <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
+                                target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                        </div>
+                        <div class="col-12 text-center pt-2">
+                            <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}} m.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>

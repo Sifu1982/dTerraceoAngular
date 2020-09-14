@@ -2,8 +2,15 @@
     min-height: 75vh;
     padding-right: 0;
     padding-left: 0;
+    color: black;
 }
 
-.wrapper {
-    width: 100%;
+.favoritos {
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+h4 {
+    color: #FA573A;
 }

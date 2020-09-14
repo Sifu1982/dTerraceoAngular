@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Terraza } from '../models/terraza.model';
+import { FavoritosService } from '../favoritos.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { TerrazasService } from '../terrazas.service';
 
 @Component({
   selector: 'app-usuario',
@@ -7,10 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor() { }
+  arrFavoritos: Terraza[];
+  lat: number;
+  lng: number;
 
-  ngOnInit(): void {
+  constructor(private favoritosService: FavoritosService, private terrazasService: TerrazasService) {
+    this.arrFavoritos = [];
+  }
 
+  async ngOnInit() {
+
+    navigator.geolocation.getCurrentPosition(position => {
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+    });
+
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      const jwt = new JwtHelperService();
+      const decodedToken = jwt.decodeToken(token);
+      const idUsuario = decodedToken.userId;
+      try {
+        const favoritos = await this.favoritosService.getByUserId(idUsuario);
+        const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
+        for (const favorito of favoritos) {
+          this.arrFavoritos.push(await this.terrazasService.getTerrazaById(parseInt(favorito.fk_terraza), objLocalStorage));
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      console.log('this.arrFavoritos', this.arrFavoritos);
+
+    }
   }
 
 }
