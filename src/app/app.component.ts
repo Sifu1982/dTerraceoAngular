@@ -43,7 +43,7 @@ export class AppComponent {
           const jwt = new JwtHelperService();
           const decodedToken = jwt.decodeToken(token);
           this.idUsuario = decodedToken.userId
-          console.log('idUsuario', this.idUsuario);
+          // console.log('idUsuario', this.idUsuario);
 
         }
       }

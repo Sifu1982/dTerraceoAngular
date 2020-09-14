@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
   */
 
   async onBusquedaNombre(nombre) {
-    console.log(nombre);
+    // console.log(nombre);
     this.arrTerrazasPorNombre = await this.terrazasService.getTerrazasPorNombre(nombre);
   };
 
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
         latitude: this.posicionActualLat,
         longitude: this.posicionActualLng
       }
-      console.log(item);
+      // console.log(item);
       arrBusqueda.push(item);
       localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
       this.router.navigate(['/detalle', terraza.id_terraza]);

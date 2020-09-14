@@ -17,4 +17,28 @@ export class FavoritosService {
     return this.httpClient.get<any[]>(`${this.baseUrl}/${idUsuario}`).toPromise();
   };
 
+  getAll(usuarioId: string, terrazaId: string): Promise<any> {
+    const body = {
+      idUsuario: usuarioId,
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/getAll`, body).toPromise();
+  };
+
+  create(usuarioId: string, terrazaId: string): Promise<any> {
+    const body = {
+      idUsuario: usuarioId,
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/create`, body).toPromise();
+  };
+
+  delete(usuarioId: string, terrazaId: string): Promise<any> {
+    const body = {
+      idUsuario: usuarioId,
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/delete`, body).toPromise();
+  };
+
 }

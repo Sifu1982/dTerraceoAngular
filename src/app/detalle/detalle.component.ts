@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Terraza } from '../models/terraza.model';
 import { TerrazasService } from '../terrazas.service';
 import { ActivatedRoute } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { FavoritosService } from '../favoritos.service';
 
 @Component({
   selector: 'app-detalle',
@@ -18,15 +20,20 @@ export class DetalleComponent implements OnInit {
   lat: number;
   lng: number;
 
+  esFavorito: boolean;
+  usuarioId: string;
+  terrazaId: string;
 
   constructor(
     private terrazasService: TerrazasService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private favoritosService: FavoritosService
   ) {
     this.terraza = new Terraza();
-
     this.zoom = 17;
-
+    this.esFavorito = false;
+    this.usuarioId = '';
+    this.terrazaId = '';
   }
 
   ngOnInit() {
@@ -41,13 +48,35 @@ export class DetalleComponent implements OnInit {
       const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
       try {
         this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza), objLocalStorage);
-        console.log(this.terraza);
+        // console.log(this.terraza);
+        const token = sessionStorage.getItem('token');
+        const jwt = new JwtHelperService();
+        const decodedToken = jwt.decodeToken(token);
+        this.usuarioId = decodedToken.userId;
+        this.terrazaId = params.idTerraza;
+        const getFavs = await this.favoritosService.getAll(this.usuarioId, this.terrazaId);
+        this.esFavorito = getFavs['BOOLEAN'];
+        // console.log('this.esFavorito', this.esFavorito);
       } catch (err) {
         console.log(err);
       }
     });
   }
 
+  async onClickFav() {
+    if (this.esFavorito === false) {
+      const result = await this.favoritosService.create(this.usuarioId, this.terrazaId);
+      this.esFavorito = true;
+      // console.log('result create', result);
+    } else {
+      const result = await this.favoritosService.delete(this.usuarioId, this.terrazaId);
+      this.esFavorito = false;
+      // console.log('result delete', result);
+    }
+
+
+
+
+  }
+
 }
-
-
