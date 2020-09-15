@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { FavoritosService } from '../favoritos.service';
 import Swal from 'sweetalert2';
 import { PuntuacionesService } from '../puntuaciones.service';
+import { Options, LabelType } from 'ng5-slider';
 
 @Component({
   selector: 'app-detalle',
@@ -21,11 +22,28 @@ export class DetalleComponent implements OnInit {
   // Variables para la geolocalización
   lat: number;
   lng: number;
+  // Variables para slider de puntuaciones
+  value: number = 3;
+  options: Options = {
+    floor: 1,
+    ceil: 5,
+    showTicks: true,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Puntuación:</b> ' + value;
+        default:
+          return '' + value;
+      }
+    }
+  }
+
 
   esFavorito: boolean;
   usuarioId: string;
   terrazaId: string;
   token: any;
+
 
   constructor(
     private terrazasService: TerrazasService,
@@ -41,6 +59,7 @@ export class DetalleComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // Conseguir la posición del usuario
     navigator.geolocation.getCurrentPosition(position => {
       this.lat = position.coords.latitude;
@@ -103,6 +122,13 @@ export class DetalleComponent implements OnInit {
       icon: 'error',
       title: `<h4>${msg}</h4>`
     });
+  }
+
+  async onCambioSliderPuntuacion() {
+    console.log(this.value);
+    console.log(this.usuarioId, this.terrazaId);
+
+    await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
   }
 
 }

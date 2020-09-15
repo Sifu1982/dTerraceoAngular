@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
+import { Ng5SliderModule } from 'ng5-slider';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { environment } from './../environments/environment';
     BrowserAnimationsModule,
     MatExpansionModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSlideToggleModule,
     NgbModule,
     AutocompleteLibModule,
@@ -54,7 +56,8 @@ import { environment } from './../environments/environment';
     AgmCoreModule.forRoot({
       // apiKey: environment.GOOGLE_API_KEY
     }),
-    GoogleMapsModule
+    GoogleMapsModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

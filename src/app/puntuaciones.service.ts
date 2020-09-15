@@ -12,6 +12,13 @@ export class PuntuacionesService {
     this.baseUrl = 'http://localhost:3000/api/puntuaciones';
   }
 
-
+  create(puntuacion: number, usuarioId: string, terrazaId: string): Promise<any> {
+    const body = {
+      puntuacion: puntuacion,
+      idUsuario: usuarioId,
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/create`, body).toPromise();
+  };
 
 }
