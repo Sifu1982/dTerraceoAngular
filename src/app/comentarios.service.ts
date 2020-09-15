@@ -24,4 +24,11 @@ export class ComentariosService {
     }
     return this.httpClient.post<any>(`${this.baseUrl}/create`, body).toPromise();
   };
+
+  delete(comentarioId: string): Promise<any> {
+    const body = {
+      id_comentario: comentarioId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/delete`, body).toPromise();
+  };
 }

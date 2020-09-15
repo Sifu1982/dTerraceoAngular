@@ -19,17 +19,21 @@ agm-map {
     width: 100%;
 }
 
-#favorito {
+.mat-mini-fab {
     transition: 250ms;
     border: none;
 }
 
-.mat-fab:focus {
+.mat-fab:focus, .mat-mini-fab:focus {
     outline: none;
 }
 
-#favorito:hover {
+.mat-mini-fab:hover {
     color: crimson;
+}
+
+#add:hover {
+    color: #20A39E;
 }
 
 .favorito {
@@ -46,4 +50,8 @@ agm-map {
 
 table th {
     font-weight: bold;
+}
+
+td {
+    word-break: break-all;
 }

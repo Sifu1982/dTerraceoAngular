@@ -102,10 +102,10 @@
                 <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>
-                            <th>Comentarios de los usuarios</th>
-                            <th class="text-center">
-                                <button mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
-                                    title="Añadir comentario" class="mat-fab mx-2" (click)="onClikAddComment()">
+                            <th class="align-middle">Comentarios de los usuarios</th>
+                            <th colspan="2" class="text-center align-middle">
+                                <button id="add" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
+                                    title="Añadir comentario" (click)="onClikAddComment()">
                                     <mat-icon>add_comment</mat-icon>
                                 </button>
                             </th>
@@ -113,7 +113,14 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let comentario of comentarios">
-                            <td>{{comentario?.comentario}}</td>
+                            <td class="comment align-middle">{{comentario?.comentario}}</td>
+                            <td class="text-center align-middle">
+                                <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip"
+                                    data-placement="top" title="Eliminar comentario"
+                                    (click)="onClikDeleteComment(comentario)" *ngIf="comentario.isOwner">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -70,17 +70,26 @@ export class DetalleComponent implements OnInit {
           const getFavsUserTerr = await this.favoritosService.getAll(this.usuarioId, this.terrazaId);
           this.esFavorito = getFavsUserTerr['BOOLEAN'];
           // COMENTARIOS
-          const comments = await this.comentariosService.getByTerrazaId(this.terrazaId);
-          if (comments.length !== 0) {
-            this.comentarios = comments;
-          }
+          this.pintarComentarios();
         }
       } catch (err) {
         console.log(err);
       }
     });
+  }
 
-
+  async pintarComentarios() {
+    const comments = await this.comentariosService.getByTerrazaId(this.terrazaId);
+    if (comments.length !== 0) {
+      for (const comment of comments) {
+        if (this.usuarioId == comment.fk_usuario) {
+          comment.isOwner = true;
+        } else {
+          comment.isOwner = false;
+        }
+      }
+    }
+    this.comentarios = comments;
   }
 
   async onClickFav() {
@@ -104,7 +113,6 @@ export class DetalleComponent implements OnInit {
 
   async onClikAddComment() {
     if (this.token) {
-
       const { value: text } = await Swal.fire({
         input: 'textarea',
         inputPlaceholder: 'Escribe tu comentario aquí...',
@@ -115,11 +123,16 @@ export class DetalleComponent implements OnInit {
       })
       if (text) {
         const result = this.comentariosService.create(this.usuarioId, this.terrazaId, text);
-        this.comentarios = await this.comentariosService.getByTerrazaId(this.terrazaId);
+        this.pintarComentarios();
       }
     } else {
       this.notLogged('Es necesario estar logado para agregar comentarios.');
     }
+  }
+
+  async onClikDeleteComment(comentario) {
+    const result = this.comentariosService.delete(comentario.id_comentario);
+    this.pintarComentarios();
   }
 
   notLogged(msg) {
