@@ -7,9 +7,10 @@
                 <div class="card-header m-1 mt-4">
                     <h5 class="card-title text-center pt-4 pb-2">{{terraza?.rotulo}}</h5>
                     <div class="icons">
-                        <button mat-fab color="basic" [ngClass]="{'favorito': esFavorito}" data-toggle="tooltip"
-                            data-placement="top" title="Agregar/Eliminar de favoritos" class="mat-fab mx-2"
-                            (click)="onClickFav()">
+                        <button id="favorito" mat-mini-fab color="basic" [ngClass]="{'favorito': esFavorito}"
+                            data-toggle="tooltip" data-placement="top" title="Agregar/Eliminar de favoritos"
+                            class="mat-fab mx-2" (click)="onClickFav()" matBadge="{{numfavoritos}}"
+                            matBadgePosition="above" matBadgeColor="warn" matBadgeOverlap="true" matBadgeSize="small">
                             <mat-icon>favorite</mat-icon>
                         </button>
                     </div>
@@ -96,6 +97,26 @@
                         <p class="card-text">NUMERO DE SILLAS: {{terraza?.sillas_es}}</p>
                     </div>
                 </div>
+            </div>
+            <div class="comentarios card col-12 mt-5">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Comentarios de los usuarios</th>
+                            <th class="text-center">
+                                <button mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
+                                    title="Añadir comentario" class="mat-fab mx-2" (click)="onClikAddComment()">
+                                    <mat-icon>add_comment</mat-icon>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let comentario of comentarios">
+                            <td>{{comentario?.comentario}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

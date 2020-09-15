@@ -19,7 +19,7 @@ agm-map {
     width: 100%;
 }
 
-.mat-fab {
+#favorito {
     transition: 250ms;
     border: none;
 }
@@ -28,10 +28,22 @@ agm-map {
     outline: none;
 }
 
-.mat-fab:hover {
+#favorito:hover {
     color: crimson;
 }
 
 .favorito {
     color: red;
+}
+
+.comentarios {
+    padding: 0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+table th {
+    font-weight: bold;
 }
