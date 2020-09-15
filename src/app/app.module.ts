@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { environment } from './../environments/environment';
     AgmCoreModule.forRoot({
       // apiKey: environment.GOOGLE_API_KEY
     }),
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,19 +19,39 @@ agm-map {
     width: 100%;
 }
 
-.mat-fab {
+.mat-mini-fab {
     transition: 250ms;
     border: none;
 }
 
-.mat-fab:focus {
+.mat-fab:focus, .mat-mini-fab:focus {
     outline: none;
 }
 
-.mat-fab:hover {
+.mat-mini-fab:hover {
     color: crimson;
+}
+
+#add:hover {
+    color: #20A39E;
 }
 
 .favorito {
     color: red;
+}
+
+.comentarios {
+    padding: 0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+table th {
+    font-weight: bold;
+}
+
+td {
+    word-break: break-all;
 }
