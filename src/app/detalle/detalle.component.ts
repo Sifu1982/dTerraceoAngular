@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Terraza } from '../models/terraza.model';
 import { TerrazasService } from '../terrazas.service';
 import { ActivatedRoute } from '@angular/router';
+import { PuntuacionesService } from '../puntuaciones.service';
 
 @Component({
   selector: 'app-detalle',
@@ -21,7 +22,8 @@ export class DetalleComponent implements OnInit {
 
   constructor(
     private terrazasService: TerrazasService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private puntuacionesService: PuntuacionesService
   ) {
     this.terraza = new Terraza();
 
