@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FavoritosService } from '../favoritos.service';
 import Swal from 'sweetalert2';
+import { PuntuacionesService } from '../puntuaciones.service';
 
 @Component({
   selector: 'app-detalle',
@@ -29,7 +30,8 @@ export class DetalleComponent implements OnInit {
   constructor(
     private terrazasService: TerrazasService,
     private activatedRoute: ActivatedRoute,
-    private favoritosService: FavoritosService
+    private favoritosService: FavoritosService,
+    private puntuacionesService: PuntuacionesService
   ) {
     this.terraza = new Terraza();
     this.zoom = 17;
