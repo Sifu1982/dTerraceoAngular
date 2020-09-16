@@ -98,12 +98,38 @@
                     </div>
                 </div>
             </div>
-            <div class="comentarios card col-12 mt-5">
-                <table class="table table-bordered">
+            <div class="comentarios col-12 mt-3">
+                <div class="comTitle col-12 p-3 border-bottom d-flex align-items-center justify-content-between">
+                    Comentarios
+                    <button id="add" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
+                        title="Añadir comentario" (click)="onClikAddComment()">
+                        <mat-icon>add_comment</mat-icon>
+                    </button>
+                </div>
+                <div class="comentario row py-2 px-3" *ngFor="let comentario of comentarios">
+                    <div class="col-12">
+                        <div class="mb-0 d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="fas fa-user-circle mr-2"></i>
+                                <strong>{{comentario.username}}</strong>
+                            </div>
+                            <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
+                                title="Eliminar comentario" (click)="onClikDeleteComment(comentario)"
+                                *ngIf="comentario.isOwner">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                        <p class="text-secondary">{{comentario.fecha |date: 'dd-MM-y'}}</p>
+                        <p>{{comentario?.comentario}}</p>
+                    </div>
+                </div>
+
+                <!-- <table class="table table-bordered">
                     <thead class="thead-light">
                         <tr>
-                            <th class="align-middle">Comentarios de los usuarios</th>
-                            <th colspan="2" class="text-center align-middle">
+                            <th class="align-middle">Comentarios sobre la terraza</th>
+                            <th class="align-middle colUser">Usuario</th>
+                            <th class="text-center align-middle colButton">
                                 <button id="add" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
                                     title="Añadir comentario" (click)="onClikAddComment()">
                                     <mat-icon>add_comment</mat-icon>
@@ -113,8 +139,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let comentario of comentarios">
-                            <td class="comment align-middle">{{comentario?.comentario}}</td>
-                            <td class="text-center align-middle">
+                            <td class="comment align-middle wrapText">{{comentario?.comentario}}</td>
+                            <td class="align-middle colUser">{{comentario.username}}</td>
+                            <td class="text-center align-middle colButton">
                                 <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip"
                                     data-placement="top" title="Eliminar comentario"
                                     (click)="onClikDeleteComment(comentario)" *ngIf="comentario.isOwner">
@@ -123,7 +150,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>
