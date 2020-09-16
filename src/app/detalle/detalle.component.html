@@ -103,7 +103,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="align-middle">Comentarios de los usuarios</th>
-                            <th colspan="2" class="text-center align-middle">
+                            <th class="text-center align-middle botonesComentarios">
                                 <button id="add" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
                                     title="Añadir comentario" (click)="onClikAddComment()">
                                     <mat-icon>add_comment</mat-icon>
@@ -114,7 +114,7 @@
                     <tbody>
                         <tr *ngFor="let comentario of comentarios">
                             <td class="comment align-middle">{{comentario?.comentario}}</td>
-                            <td class="text-center align-middle">
+                            <td class="text-center align-middle botonesComentarios">
                                 <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip"
                                     data-placement="top" title="Eliminar comentario"
                                     (click)="onClikDeleteComment(comentario)" *ngIf="comentario.isOwner">
