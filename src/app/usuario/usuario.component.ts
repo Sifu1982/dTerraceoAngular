@@ -40,8 +40,6 @@ export class UsuarioComponent implements OnInit {
       } catch (err) {
         console.log(err);
       }
-      console.log('this.arrFavoritos', this.arrFavoritos);
-
     }
   }
 

@@ -17,6 +17,13 @@ export class FavoritosService {
     return this.httpClient.get<any[]>(`${this.baseUrl}/${idUsuario}`).toPromise();
   };
 
+  getTerrazaId(terrazaId: string): Promise<number> {
+    const body = {
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<number>(`${this.baseUrl}/terraza`, body).toPromise();
+  };
+
   getAll(usuarioId: string, terrazaId: string): Promise<any> {
     const body = {
       idUsuario: usuarioId,

@@ -25,6 +25,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
 import { Ng5SliderModule } from 'ng5-slider';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { Ng5SliderModule } from 'ng5-slider';
       // apiKey: environment.GOOGLE_API_KEY
     }),
     GoogleMapsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
