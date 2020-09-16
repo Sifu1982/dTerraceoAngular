@@ -42,20 +42,18 @@ agm-map {
 
 .comentarios {
     padding: 0;
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
 }
 
-.table {
-    margin-bottom: 0;
-}
-
-table th {
+.comTitle {
+    font-size: 1.5rem;
     font-weight: bold;
+    color: #FA573A;
 }
 
-td {
-    word-break: break-all;
-}
-
-.botonesComentarios {
-    width: 3vw;
+.comentario i {
+    font-size: 1.5rem;
+    color: silver
 }

@@ -71,9 +71,9 @@ export class DetalleComponent implements OnInit {
           // FAVORITOS
           const getFavsUserTerr = await this.favoritosService.getAll(this.usuarioId, this.terrazaId);
           this.esFavorito = getFavsUserTerr['BOOLEAN'];
-          // COMENTARIOS
-          this.pintarComentarios();
         }
+        // COMENTARIOS
+        this.pintarComentarios();
       } catch (err) {
         console.log(err);
       }
@@ -82,7 +82,7 @@ export class DetalleComponent implements OnInit {
 
   async pintarComentarios() {
     const comments = await this.comentariosService.getByTerrazaId(this.terrazaId);
-    if (comments.length !== 0) {
+    if (comments.length != 0) {
       for (const comment of comments) {
         if (this.usuarioId == comment.fk_usuario) {
           comment.isOwner = true;
@@ -124,7 +124,7 @@ export class DetalleComponent implements OnInit {
         showCancelButton: true
       })
       if (text) {
-        const result = this.comentariosService.create(this.usuarioId, this.terrazaId, text);
+        const result = await this.comentariosService.create(this.usuarioId, this.terrazaId, text);
         this.pintarComentarios();
       }
     } else {
@@ -133,7 +133,7 @@ export class DetalleComponent implements OnInit {
   }
 
   async onClikDeleteComment(comentario) {
-    const result = this.comentariosService.delete(comentario.id_comentario);
+    const result = await this.comentariosService.delete(comentario.id_comentario);
     this.pintarComentarios();
   }
 
