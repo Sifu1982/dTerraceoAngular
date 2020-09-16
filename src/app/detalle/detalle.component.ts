@@ -24,9 +24,9 @@ export class DetalleComponent implements OnInit {
   lat: number;
   lng: number;
   // Variables para slider de puntuaciones
-  value: number = 3;
+  value: number = 0;
   options: Options = {
-    floor: 1,
+    floor: 0,
     ceil: 5,
     showTicks: true,
     translate: (value: number, label: LabelType): string => {
@@ -46,6 +46,7 @@ export class DetalleComponent implements OnInit {
   terrazaId: string;
   token: any;
   comentarios: any[];
+  estaLogado: boolean;
 
 
   constructor(
@@ -62,6 +63,7 @@ export class DetalleComponent implements OnInit {
     this.usuarioId = '';
     this.terrazaId = '';
     this.comentarios = [];
+    this.estaLogado = false;
   }
 
   ngOnInit() {
@@ -84,6 +86,7 @@ export class DetalleComponent implements OnInit {
         // console.log('this.numfavoritos', this.numfavoritos);
 
         if (this.token) {
+          this.estaLogado = true;
           const jwt = new JwtHelperService();
           const decodedToken = jwt.decodeToken(this.token);
           this.usuarioId = decodedToken.userId;
@@ -92,6 +95,9 @@ export class DetalleComponent implements OnInit {
           this.esFavorito = getFavsUserTerr['BOOLEAN'];
           // COMENTARIOS
           this.pintarComentarios();
+          // GUARDAR PUNTUACIÓN USUARIO EN EL SLIDER
+          const arrayUsuarioTerrazaPuntuacion = await this.puntuacionesService.puntuacionByIdUsuarioIdTerraza(this.usuarioId, this.terrazaId);
+          this.value = arrayUsuarioTerrazaPuntuacion[0].puntuacion;
         }
       } catch (err) {
         console.log(err);
@@ -175,10 +181,10 @@ export class DetalleComponent implements OnInit {
   }
 
   async onCambioSliderPuntuacion() {
-    console.log(this.value);
-    console.log(this.usuarioId, this.terrazaId);
-
-    await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
+    if (this.token) {
+      await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
+    } else {
+      this.notLogged('Es necesario estar logado para poder puntuar las terrazas')
+    }
   }
-
 }

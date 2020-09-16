@@ -5,9 +5,9 @@
             <!-- card izquierda -->
             <div class="card col-12 col-md-6">
                 <div class="card-header m-1 mt-4">
-                    <h4 class="card-title text-center">{{terraza?.rotulo}}</h4>
-                    <div class="row">
-                        <div class="icons col-4">
+                    <h5 class="card-title text-center">{{terraza?.rotulo}}</h5>
+                    <div class="icons row">
+                        <div class="col-4 py-2">
                             <button id="favorito" mat-mini-fab color="basic" [ngClass]="{'favorito': esFavorito}"
                                 data-toggle="tooltip" data-placement="top" title="Agregar/Eliminar de favoritos"
                                 class="mat-fab mx-2" (click)="onClickFav()" matBadge="{{numfavoritos}}"
@@ -21,117 +21,119 @@
                             <ng5-slider [(value)]="value" [options]="options" (userChange)="onCambioSliderPuntuacion()">
                             </ng5-slider>
                         </div>
+                    </div>
 
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!-- foto street view -->
+                        <img [src]="terraza?.streetView" class="card-img rounded mb-4" [alt]="terraza?.rotulo">
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- foto street view -->
-                            <img [src]="terraza?.streetView" class="card-img rounded mb-4" [alt]="terraza?.rotulo">
-                        </div>
-                        <div class="col-12 mb-4">
-                            <!-- carrusel -->
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <!-- attr. sintaxis necesaria para que Angular procese el binding a un atributo, sin producir ningún mensaje de error -->
-                                    <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
-                                        *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i=index"></li>
-                                </ol>
-                                <div class="carousel-inner imgCar">
-                                    <div class="carousel-item" [ngClass]="{active: i===0}"
-                                        *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i= index">
-                                        <img [src]="img" class="d-block w-100">
-                                    </div>
+                    <div class="col-12">
+                        <!-- carrusel -->
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <!-- attr. sintaxis necesaria para que Angular procese el binding a un atributo, sin producir ningún mensaje de error -->
+                                <li data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"
+                                    *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i=index"></li>
+                            </ol>
+                            <div class="carousel-inner imgCar">
+                                <div class="carousel-item" [ngClass]="{active: i===0}"
+                                    *ngFor="let img of terraza?.googlePlacesData?.imagenes, let i= index">
+                                    <img [src]="img" class="d-block w-100">
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                    data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                    data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- card derecha -->
-                <div class="card col-12 col-md-6">
-                    <div class="card-header row m-1 mt-4 p-4">
-                        <!-- Llévame allí -->
-                        <div class="col-12">
-                            <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
-                                target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
-                        </div>
-                        <div class="col-12 text-center pt-2">
-                            <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}}</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Mapa -->
-                            <agm-map [latitude]="terraza?.coordenada_x_local" [zoom]="16"
-                                [longitude]="terraza?.coordenada_y_local">
-                                <agm-marker [latitude]="terraza?.coordenada_x_local"
-                                    [longitude]="terraza?.coordenada_y_local">
-                                    <agm-info-window>
-                                        <p>{{terraza?.rotulo}}</p>
-                                        <a [href]="'tel:0034' + terraza?.googlePlacesData?.telefono"
-                                            *ngIf="terraza?.googlePlacesData?.telefono!==''">
-                                            <p class="card-title">{{terraza?.googlePlacesData?.telefono}}</p>
-                                        </a>
-                                    </agm-info-window>
-                                </agm-marker>
-                            </agm-map>
-                        </div>
-                        <div class="col-12 p-5">
-                            <!-- Información -->
-                            <a [href]="'tel:0034' + terraza?.googlePlacesData?.telefono"
-                                *ngIf="terraza?.googlePlacesData?.telefono!==''">
-                                <h6 class="card-title">{{terraza?.googlePlacesData?.telefono}}</h6>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
                             </a>
-                            <p class="card-text">HORARIO L-J: {{terraza?.hora_ini_lj_es | slice:0:-3}} -
-                                {{terraza?.hora_fin_lj_es | slice:0:-3}}</p>
-                            <p class="card-text">FIN DE SEMANA: {{terraza?.hora_ini_vs_es | slice:0:-3}} -
-                                {{terraza?.hora_fin_vs_es | slice:0:-3}}</p>
-                            <p class="card-title border-top border-secondary">{{terraza?.desc_clase}}
-                                {{terraza?.desc_nombre}}
-                                {{terraza?.nom_terraza}}
-                                {{terraza?.num_terraza}}</p>
-                            <p class="card-text">Tipo: {{terraza?.desc_ubicacion_terraza}}</p>
-                            <p class="card-text border-top border-secondary">NUMERO DE MESAS: {{terraza?.mesas_es}}</p>
-                            <p class="card-text">NUMERO DE SILLAS: {{terraza?.sillas_es}}</p>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="comentarios card col-12 mt-5">
-                    <table class="table table-bordered">
-                        <thead class="thead-light">
-                            <tr>
-                                <th class="align-middle">Comentarios de los usuarios</th>
-                                <th class="text-center align-middle botonesComentarios">
-                                    <button id="add" mat-mini-fab color="basic" data-toggle="tooltip"
-                                        data-placement="top" title="Añadir comentario" (click)="onClikAddComment()">
-                                        <mat-icon>add_comment</mat-icon>
-                                    </button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let comentario of comentarios">
-                                <td class="comment align-middle">{{comentario?.comentario}}</td>
-                                <td class="text-center align-middle botonesComentarios">
-                                    <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip"
-                                        data-placement="top" title="Eliminar comentario"
-                                        (click)="onClikDeleteComment(comentario)" *ngIf="comentario.isOwner">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+            <!-- card derecha -->
+            <div class="card col-12 col-md-6">
+                <div class="card-header row m-1 mt-4 p-4">
+                    <!-- Llévame allí -->
+                    <div class="col-12">
+                        <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
+                            target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                    </div>
+                    <div class="col-12 text-center pt-2">
+                        <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}}</small>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Mapa -->
+                        <agm-map [latitude]="terraza?.coordenada_x_local" [zoom]="16"
+                            [longitude]="terraza?.coordenada_y_local">
+                            <agm-marker [latitude]="terraza?.coordenada_x_local"
+                                [longitude]="terraza?.coordenada_y_local">
+                                <agm-info-window>
+                                    <p>{{terraza?.rotulo}}</p>
+                                    <a [href]="'tel:0034' + terraza?.googlePlacesData?.telefono"
+                                        *ngIf="terraza?.googlePlacesData?.telefono!==''">
+                                        <p class="card-title">{{terraza?.googlePlacesData?.telefono}}</p>
+                                    </a>
+                                </agm-info-window>
+                            </agm-marker>
+                        </agm-map>
+                    </div>
+                    <div class="col-12 p-5">
+                        <!-- Información -->
+                        <a [href]="'tel:0034' + terraza?.googlePlacesData?.telefono"
+                            *ngIf="terraza?.googlePlacesData?.telefono!==''">
+                            <h6 class="card-title">{{terraza?.googlePlacesData?.telefono}}</h6>
+                        </a>
+                        <p class="card-text">HORARIO L-J: {{terraza?.hora_ini_lj_es | slice:0:-3}} -
+                            {{terraza?.hora_fin_lj_es | slice:0:-3}}</p>
+                        <p class="card-text">FIN DE SEMANA: {{terraza?.hora_ini_vs_es | slice:0:-3}} -
+                            {{terraza?.hora_fin_vs_es | slice:0:-3}}</p>
+                        <p class="card-title border-top border-secondary">{{terraza?.desc_clase}}
+                            {{terraza?.desc_nombre}}
+                            {{terraza?.nom_terraza}}
+                            {{terraza?.num_terraza}}</p>
+                        <p class="card-text">Tipo: {{terraza?.desc_ubicacion_terraza}}</p>
+                        <p class="card-text border-top border-secondary">NUMERO DE MESAS: {{terraza?.mesas_es}}</p>
+                        <p class="card-text">NUMERO DE SILLAS: {{terraza?.sillas_es}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comentarios card col-12 mt-5">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="align-middle">Comentarios de los usuarios</th>
+                            <th class="text-center align-middle botonesComentarios">
+                                <button id="add" mat-mini-fab color="basic" data-toggle="tooltip" data-placement="top"
+                                    title="Añadir comentario" (click)="onClikAddComment()">
+                                    <mat-icon>add_comment</mat-icon>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let comentario of comentarios">
+                            <td class="comment align-middle">{{comentario?.comentario}}</td>
+                            <td class="text-center align-middle botonesComentarios">
+                                <button id="delete" mat-mini-fab color="basic" data-toggle="tooltip"
+                                    data-placement="top" title="Eliminar comentario"
+                                    (click)="onClikDeleteComment(comentario)" *ngIf="comentario.isOwner">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
