@@ -53,7 +53,7 @@ export class RegistroComponent implements OnInit {
 
       Toast.fire({
         icon: 'success',
-        title: '<h2>Usuario registrado corectamente.</h2>'
+        title: '<h4>Usuario registrado corectamente.</h4>'
       });
 
       this.router.navigate(['/login']);

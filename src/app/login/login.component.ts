@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
       Toast.fire({
         icon: 'success',
-        title: '<h2>Usuario logado correctamente.</h2>'
+        title: '<h4>Usuario logado correctamente.</h4>'
       });
 
       this.router.navigate(['/usuario', response['id_usuario']]);

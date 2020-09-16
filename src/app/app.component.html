@@ -1,21 +1,25 @@
 <div class="container-fluid .flex-column justify-content-between">
     <header>
-        <nav class="navbar navbar-dark bg-transparent p-3 row animate__animated animate__backInDown animate__slower">
-            <div>
+        <nav class="navbar navbar-dark bg-transparent row animate__animated animate__backInDown animate__slower p-1">
+            <div class="ml-1">
                 <a id="logo" class="navbar-brand animate__animated animate__flash animate__delay-4s"
                     [routerLink]="['home']">
                     <span>Dterraceo<i class="fas fa-cocktail"></i></span>
                 </a>
             </div>
-            <div class="row justify-content-center align-items-center mr-1">
-                <button type="button" class="home btn btn-outline-danger mx-1" type="button" [routerLink]="['home']"
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="button" class="home btn btn-outline-danger mr-1" type="button" [routerLink]="['home']"
                     *ngIf="desHome" data-toggle="tooltip" data-placement="bottom" title="Ir a Home">Home</button>
-                <button type="button" class="btn btn-outline-danger ml-1" [routerLink]="['login']"
+                <button type="button" class="btn btn-outline-danger mr-1" [routerLink]="['login']"
                     *ngIf="desLogin && !userLogged" data-toggle="tooltip" data-placement="bottom"
                     title="Ir a Login">Login</button>
-                <button type="button" class="btn btn-outline-danger ml-1" [routerLink]="['usuario', idUsuario]"
+                <button type="button" class="btn btn-outline-danger mr-1" [routerLink]="['usuario', idUsuario]"
                     *ngIf="userLogged" data-toggle="tooltip" data-placement="bottom" title="Perfil de usuario">
                     <i class="fas fa-user-circle"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger mr-1" *ngIf="userLogged" data-toggle="tooltip"
+                    data-placement="bottom" title="Logout" (click)="onClick()">
+                    <i class="fas fa-sign-out-alt"></i>
                 </button>
             </div>
         </nav>

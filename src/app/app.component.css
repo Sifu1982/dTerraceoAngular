@@ -1,10 +1,5 @@
 .container-fluid {
     background-color: black;
-    /* background-image: url('../assets/background.jpg'); */
-    /* background-repeat: no-repeat; */
-    /* background-size: 85%; */
-    /* background-position: center top; */
-    /* min-height: 100vh; */
 }
 
 header {
@@ -34,40 +29,7 @@ i {
     #logo {
         font-size: 1.5rem;
     }
-}
-
-/* @media (min-width: 480px) {
-    .container-fluid {
-        background-size: 150%;
+    i {
+        font-size: 1rem;
     }
 }
-
-@media (min-width: 720px) {
-    .container-fluid {
-        background-size: 125%;
-    }
-}
-
-@media (min-width: 960px) {
-    .container-fluid {
-        background-size: 100%;
-    }
-}
-
-@media (min-width: 1400px) {
-    .container-fluid {
-        background-size: 85%;
-    }
-}
-
-@media (min-width: 1600px) {
-    .container-fluid {
-        background-size: 80%;
-    }
-}
-
-@media (min-width: 1920px) {
-    .container-fluid {
-        background-size: 75%;
-    }
-} */

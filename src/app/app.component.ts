@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +21,6 @@ export class AppComponent {
     this.userLogged = false;
   }
   ngOnInit() {
-
-
-
     //Desactivar el botón home en  "/home" y el botón login en "/login"
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -49,4 +47,28 @@ export class AppComponent {
       }
     });
   }
+
+
+  onClick() {
+    sessionStorage.removeItem('token');
+    this.userLogged = false;
+    this.router.navigate(['/home']);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'center',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: '<h4>Sesión cerrada correctamente.</h4>'
+    });
+  }
+
 }
