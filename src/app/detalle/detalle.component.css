@@ -1,3 +1,19 @@
+.colorLogo {
+    background-color: #FA573A;
+}
+
+.colorOro {
+    color: rgb(199, 199, 9);
+}
+
+.colorSilver {
+    color: #FA573A;
+}
+
+.textSize {
+    font-size: clamp(10px, 3.5vw, 16px);
+}
+
 .card {
     color: black;
 }
@@ -56,4 +72,13 @@ agm-map {
 .comentario i {
     font-size: 1.5rem;
     color: silver
+}
+
+.botonesComentarios {
+    width: 3vw;
+}
+
+.card-header {
+    height: 195px;
+    padding: .75rem;
 }

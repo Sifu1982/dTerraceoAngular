@@ -24,6 +24,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
+import { Ng5SliderModule } from 'ng5-slider';
 import { MatBadgeModule } from '@angular/material/badge';
 
 
@@ -45,6 +46,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     BrowserAnimationsModule,
     MatExpansionModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSlideToggleModule,
     NgbModule,
     AutocompleteLibModule,
@@ -56,6 +58,7 @@ import { MatBadgeModule } from '@angular/material/badge';
       // apiKey: environment.GOOGLE_API_KEY
     }),
     GoogleMapsModule,
+    Ng5SliderModule,
     MatBadgeModule
   ],
   providers: [],

@@ -7,6 +7,7 @@ import { FavoritosService } from '../favoritos.service';
 import { ComentariosService } from '../comentarios.service';
 import Swal from 'sweetalert2';
 import { PuntuacionesService } from '../puntuaciones.service';
+import { Options, LabelType } from 'ng5-slider';
 
 @Component({
   selector: 'app-detalle',
@@ -22,6 +23,21 @@ export class DetalleComponent implements OnInit {
   // Variables para la geolocalización
   lat: number;
   lng: number;
+  // Variables para slider de puntuaciones
+  value: number = 0;
+  options: Options = {
+    floor: 0,
+    ceil: 5,
+    showTicks: true,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Mi puntuación:</b> ' + value;
+        default:
+          return '';
+      }
+    }
+  }
 
   esFavorito: boolean;
   numfavoritos: number;
@@ -29,6 +45,8 @@ export class DetalleComponent implements OnInit {
   terrazaId: string;
   token: any;
   comentarios: any[];
+  estaLogado: boolean;
+  puntuacionMedia: number;
 
   constructor(
     private terrazasService: TerrazasService,
@@ -44,38 +62,53 @@ export class DetalleComponent implements OnInit {
     this.usuarioId = '';
     this.terrazaId = '';
     this.comentarios = [];
+    this.estaLogado = false;
+    this.puntuacionMedia = 0;
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+
     // Conseguir la posición del usuario
     navigator.geolocation.getCurrentPosition(position => {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
     });
 
+
     this.activatedRoute.params.subscribe(async params => {
       const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
       try {
         this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza), objLocalStorage);
-        // console.log(this.terraza);
         this.token = sessionStorage.getItem('token');
-
         this.terrazaId = params.idTerraza;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('this.numfavoritos', this.numfavoritos);
 
         if (this.token) {
+          this.estaLogado = true;
           const jwt = new JwtHelperService();
           const decodedToken = jwt.decodeToken(this.token);
           this.usuarioId = decodedToken.userId;
           // FAVORITOS
           const getFavsUserTerr = await this.favoritosService.getAll(this.usuarioId, this.terrazaId);
           this.esFavorito = getFavsUserTerr['BOOLEAN'];
+          // COMENTARIOS
+          this.pintarComentarios();
+          // GUARDAR PUNTUACIÓN USUARIO EN EL SLIDER
+          const arrayUsuarioTerrazaPuntuacion = await this.puntuacionesService.puntuacionByIdUsuarioIdTerraza(this.usuarioId, this.terrazaId);
+          if (arrayUsuarioTerrazaPuntuacion.length !== 0) {
+            this.value = arrayUsuarioTerrazaPuntuacion[0].puntuacion;
+          }
         }
         // COMENTARIOS
         this.pintarComentarios();
       } catch (err) {
         console.log(err);
+      }
+      try {
+        this.calcularPuntuacionMedia();
+      } catch (err) {
+        console.log(err);
+
       }
     });
   }
@@ -95,18 +128,15 @@ export class DetalleComponent implements OnInit {
   }
 
   async onClickFav() {
-    // console.log('this.token', this.token);
     if (this.token) {
       if (this.esFavorito === false) {
         const result = await this.favoritosService.create(this.usuarioId, this.terrazaId);
         this.esFavorito = true;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('result create', result);
       } else {
         const result = await this.favoritosService.delete(this.usuarioId, this.terrazaId);
         this.esFavorito = false;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('result delete', result);
       }
     } else {
       this.notLogged('Es necesario estar logado para agregar a favoritos.');
@@ -155,4 +185,24 @@ export class DetalleComponent implements OnInit {
     });
   }
 
+  async onCambioSliderPuntuacion() {
+    if (this.token) {
+      await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
+      this.calcularPuntuacionMedia();
+    } else {
+      this.notLogged('Es necesario estar logado para poder puntuar las terrazas')
+    }
+  }
+
+  async calcularPuntuacionMedia() {
+    // Puntuación media terraza
+    const puntuaciones = await this.puntuacionesService.getByIdTerraza(this.terrazaId);
+    if (puntuaciones.length !== 0) {
+      let suma = 0;
+      for (const puntuacion of puntuaciones) {
+        suma += puntuacion.puntuacion;
+      }
+      this.puntuacionMedia = suma / puntuaciones.length;
+    }
+  }
 }
