@@ -20,3 +20,7 @@ form {
 .error {
     color: red;
 }
+
+span {
+    font-size: clamp(0.5rem, 3.5vw, 1rem);
+}

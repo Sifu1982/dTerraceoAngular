@@ -1,5 +1,8 @@
+<div class="mt-3">
+    <h1>Tu buscador de terrazas de Madrid</h1>
+</div>
 <div id="wrapperBuscador" class="row flex-column justify-content-center align-items-center mb-5">
-    <div id="buscador" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7">
+    <div id="buscador" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 p-0">
         <div class="crimson">
             <div class="tomato">
                 <ng-autocomplete class="autocomplete" [data]="arrTerrazasPorNombre" [searchKeyword]="keywordNombre"
@@ -22,16 +25,19 @@
     </div>
 
 
-    <div id="buscadorAvanzado" class="row justify-content-center align-items-end mb-5">
-        <div class="col-12">
+    <div id="buscadorAvanzado"
+        class="row justify-content-center align-items-end mt-4 mb-5 mx-0 p-2 col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 ">
+        <div class="p-0">
 
             <mat-accordion id="acordeon">
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header class="mt-2">
+                <mat-expansion-panel hideToggle [ngClass]="{'darker': fondoOscuro}">
+                    <mat-expansion-panel-header>
                         <mat-panel-description>
-                            <button class="btn btn-outline-danger btn-lg" data-toggle="tooltip" data-placement="bottom"
-                                title="Búsqueda avanzada">
-                                <i class="fas fa-angle-double-down"></i>
+                            <button
+                                class="btn btn-danger btn-block btn-lg d-flex align-items-center justify-content-between border border-dark"
+                                (click)="onClickBusquedaAvanzada()">
+                                Búsqueda avanzada<i class="fas fa-search ml-2"></i>
+                                <!-- <i class="fas fa-angle-double-down"></i>-->
                             </button>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -45,7 +51,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><span>Introduce nombre de la calle</span> </label>
+                            <label><span>Introduce una calle</span> </label>
                             <input type="text" class="form-control" formControlName="calle"
                                 placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
 
@@ -62,6 +68,9 @@
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
+    </div>
+    <div class="arrowDiv">
+        <i class="fas fa-angle-double-down arrow animate__animated animate__shakeY"></i>
     </div>
 
 </div>

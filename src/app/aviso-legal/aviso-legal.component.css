@@ -1,3 +1,9 @@
+.container {
+    min-height: 75vh;
+    padding-right: 0;
+    padding-left: 0;
+}
+
 div {
     background-color: rgb(0, 0, 0, 0.4);
 }

@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   posicionActualLat: number;
   posicionActualLng: number;
 
+  fondoOscuro: Boolean;
+
   constructor(private terrazasService: TerrazasService, private router: Router) {
 
     this.fomularioBusquedaAvanzada = new FormGroup({
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
 
     this.arrTerrazasPorNombre = [];
     this.keywordNombre = 'rotulo';
-
+    this.fondoOscuro = false;
   }
 
   async ngOnInit() {
@@ -84,6 +86,10 @@ export class HomeComponent implements OnInit {
   };
 
   //*METODOS DE BUSQUEDA AVANZADA
+  onClickBusquedaAvanzada() {
+    this.fondoOscuro = !this.fondoOscuro;
+  }
+
   onChangeBarrio($event) {
     // console.log($event.target.value);
     if (this.checkUbicacion()) {
