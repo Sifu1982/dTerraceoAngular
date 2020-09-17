@@ -1,11 +1,18 @@
 <div class="row justify-content-center">
-
     <div class="col-11 mt-4 mb-4">
         <div class="row justify-content-center">
             <!-- card izquierda -->
             <div class="card col-12 col-md-6">
                 <div class="card-header m-1 mt-4">
-                    <h5 class="card-title text-center">{{terraza?.rotulo}}</h5>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="card-title text-center">{{terraza?.rotulo}}</h5>
+                        </div>
+                        <div class="col-12">
+                            <p class="row justify-content-center">Puntuación media:
+                                {{puntuacionMedia | number:'1.0-1'}}</p>
+                        </div>
+                    </div>
                     <div class="icons row">
                         <div class="col-4 py-2">
                             <button id="favorito" mat-mini-fab color="basic" [ngClass]="{'favorito': esFavorito}"
@@ -30,7 +37,7 @@
                         <!-- foto street view -->
                         <img [src]="terraza?.streetView" class="card-img rounded mb-4" [alt]="terraza?.rotulo">
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-1">
                         <!-- carrusel -->
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">

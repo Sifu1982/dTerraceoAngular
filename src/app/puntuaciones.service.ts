@@ -29,4 +29,11 @@ export class PuntuacionesService {
     return this.httpClient.post<any>(`${this.baseUrl}/puntuacion`, body).toPromise();
   };
 
+  getByIdTerraza(terrazaId: string): Promise<any> {
+    const body = {
+      idTerraza: terrazaId
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/terraza`, body).toPromise();
+  };
+
 }

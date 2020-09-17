@@ -32,13 +32,12 @@ export class DetalleComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '<b>Puntuación:</b> ' + value;
+          return '<b>Mi puntuación:</b> ' + value;
         default:
           return '' + value;
       }
     }
   }
-
 
   esFavorito: boolean;
   numfavoritos: number;
@@ -47,7 +46,7 @@ export class DetalleComponent implements OnInit {
   token: any;
   comentarios: any[];
   estaLogado: boolean;
-
+  puntuacionMedia: number;
 
   constructor(
     private terrazasService: TerrazasService,
@@ -64,6 +63,7 @@ export class DetalleComponent implements OnInit {
     this.terrazaId = '';
     this.comentarios = [];
     this.estaLogado = false;
+    this.puntuacionMedia = 0;
   }
 
   ngOnInit() {
@@ -73,6 +73,7 @@ export class DetalleComponent implements OnInit {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
     });
+
 
     this.activatedRoute.params.subscribe(async params => {
       const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
@@ -84,6 +85,8 @@ export class DetalleComponent implements OnInit {
         this.terrazaId = params.idTerraza;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
         // console.log('this.numfavoritos', this.numfavoritos);
+
+        this.puntuacionMedia = await this.calcularPuntuacionMedia();
 
         if (this.token) {
           this.estaLogado = true;
@@ -162,6 +165,7 @@ export class DetalleComponent implements OnInit {
     this.pintarComentarios();
   }
 
+  // HELPERS
   notLogged(msg) {
     const Toast = Swal.mixin({
       toast: true,
@@ -183,8 +187,21 @@ export class DetalleComponent implements OnInit {
   async onCambioSliderPuntuacion() {
     if (this.token) {
       await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
+      this.puntuacionMedia = await this.calcularPuntuacionMedia();
     } else {
       this.notLogged('Es necesario estar logado para poder puntuar las terrazas')
+    }
+  }
+
+  async calcularPuntuacionMedia() {
+    // Puntuación media terraza
+    const puntuaciones = await this.puntuacionesService.getByIdTerraza(this.terrazaId);
+    if (puntuaciones.length !== 0) {
+      let suma = 0;
+      for (const puntuacion of puntuaciones) {
+        suma += puntuacion.puntuacion;
+      }
+      return suma / puntuaciones.length;
     }
   }
 }
