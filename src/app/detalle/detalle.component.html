@@ -5,14 +5,16 @@
             <div class="card col-12 col-md-6">
                 <div class="card-header m-1 mt-4">
                     <div class="row">
-                        <div class="col-12">
-                            <h5 class="card-title text-center">{{terraza?.rotulo}}</h5>
+                        <div class="col-12 colorSilver">
+                            <h2 class="card-title text-center textSize">{{terraza?.rotulo}}</h2>
                         </div>
-                        <div class="col-12">
-                            <p class="row justify-content-center">Puntuación media:
-                                {{puntuacionMedia | number:'1.0-1'}}</p>
+                        <div class="col-12 py-3">
+                            <p class="text-right pr-4"> Puntuación media:
+                                <span class="mx-2"> {{puntuacionMedia | number:'1.0-1'}}</span> <i
+                                    class="fas fa-star colorOro"></i></p>
                         </div>
                     </div>
+                    <!-- Icono favoritos -->
                     <div class="icons row">
                         <div class="col-4 py-2">
                             <button id="favorito" mat-mini-fab color="basic" [ngClass]="{'favorito': esFavorito}"
@@ -67,13 +69,14 @@
             </div>
             <!-- card derecha -->
             <div class="card col-12 col-md-6">
-                <div class="card-header row m-1 mt-4 p-4">
-                    <!-- Llévame allí -->
+                <!-- Llévame allí -->
+                <div class="card-header row m-1 mt-4">
                     <div class="col-12">
                         <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
-                            target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
+                            target="blank" class="btn btn-block btn-danger"><i class="fas fa-map-marked-alt mr-2"></i>
+                            ¡Llévame allí!</a>
                     </div>
-                    <div class="col-12 text-center pt-2">
+                    <div class="col-12 text-center">
                         <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}}</small>
                     </div>
                 </div>

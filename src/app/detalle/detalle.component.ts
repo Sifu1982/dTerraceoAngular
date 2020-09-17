@@ -34,7 +34,7 @@ export class DetalleComponent implements OnInit {
         case LabelType.Low:
           return '<b>Mi puntuación:</b> ' + value;
         default:
-          return '' + value;
+          return '';
       }
     }
   }

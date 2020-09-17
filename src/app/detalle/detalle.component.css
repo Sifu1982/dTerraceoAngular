@@ -1,5 +1,17 @@
-h4 {
-    text-decoration-line: underline;
+.colorLogo {
+    background-color: #FA573A;
+}
+
+.colorOro {
+    color: rgb(199, 199, 9);
+}
+
+.colorSilver {
+    color: #FA573A;
+}
+
+.textSize {
+    font-size: clamp(10px, 3.5vw, 16px);
 }
 
 .card {
@@ -62,4 +74,12 @@ td {
 
 .botonesComentarios {
     width: 3vw;
+}
+
+.card-header {
+    height: 195px;
+}
+
+.card-header {
+    padding: .75rem;
 }
