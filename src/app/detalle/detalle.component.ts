@@ -79,14 +79,9 @@ export class DetalleComponent implements OnInit {
       const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
       try {
         this.terraza = await this.terrazasService.getTerrazaById(parseInt(params.idTerraza), objLocalStorage);
-        // console.log(this.terraza);
         this.token = sessionStorage.getItem('token');
-
         this.terrazaId = params.idTerraza;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('this.numfavoritos', this.numfavoritos);
-
-        this.puntuacionMedia = await this.calcularPuntuacionMedia();
 
         if (this.token) {
           this.estaLogado = true;
@@ -100,10 +95,18 @@ export class DetalleComponent implements OnInit {
           this.pintarComentarios();
           // GUARDAR PUNTUACIÓN USUARIO EN EL SLIDER
           const arrayUsuarioTerrazaPuntuacion = await this.puntuacionesService.puntuacionByIdUsuarioIdTerraza(this.usuarioId, this.terrazaId);
-          this.value = arrayUsuarioTerrazaPuntuacion[0].puntuacion;
+          if (arrayUsuarioTerrazaPuntuacion.length !== 0) {
+            this.value = arrayUsuarioTerrazaPuntuacion[0].puntuacion;
+          }
         }
       } catch (err) {
         console.log(err);
+      }
+      try {
+        this.calcularPuntuacionMedia();
+      } catch (err) {
+        console.log(err);
+
       }
     });
   }
@@ -123,18 +126,15 @@ export class DetalleComponent implements OnInit {
   }
 
   async onClickFav() {
-    // console.log('this.token', this.token);
     if (this.token) {
       if (this.esFavorito === false) {
         const result = await this.favoritosService.create(this.usuarioId, this.terrazaId);
         this.esFavorito = true;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('result create', result);
       } else {
         const result = await this.favoritosService.delete(this.usuarioId, this.terrazaId);
         this.esFavorito = false;
         this.numfavoritos = await this.favoritosService.getTerrazaId(this.terrazaId);
-        // console.log('result delete', result);
       }
     } else {
       this.notLogged('Es necesario estar logado para agregar a favoritos.');
@@ -165,7 +165,6 @@ export class DetalleComponent implements OnInit {
     this.pintarComentarios();
   }
 
-  // HELPERS
   notLogged(msg) {
     const Toast = Swal.mixin({
       toast: true,
@@ -187,7 +186,7 @@ export class DetalleComponent implements OnInit {
   async onCambioSliderPuntuacion() {
     if (this.token) {
       await this.puntuacionesService.create(this.value, this.usuarioId, this.terrazaId);
-      this.puntuacionMedia = await this.calcularPuntuacionMedia();
+      this.calcularPuntuacionMedia();
     } else {
       this.notLogged('Es necesario estar logado para poder puntuar las terrazas')
     }
@@ -201,7 +200,7 @@ export class DetalleComponent implements OnInit {
       for (const puntuacion of puntuaciones) {
         suma += puntuacion.puntuacion;
       }
-      return suma / puntuaciones.length;
+      this.puntuacionMedia = suma / puntuaciones.length;
     }
   }
 }
