@@ -66,4 +66,14 @@ export class TerrazasService {
     return this.httpClient.post<Terraza>(`${this.baseUrl}/id/${pId}`, body).toPromise();
   };
 
+  // Método usado en home.component para saber si la calle buscada existe en la BBDD
+  getCalle(pCalle: string): Promise<any> {
+    const body = {
+      calle: pCalle
+    }
+    return this.httpClient.post<any>(`${this.baseUrl}/calle`, body).toPromise();
+  };
+
+
+
 }

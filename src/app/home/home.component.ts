@@ -62,8 +62,12 @@ export class HomeComponent implements OnInit {
   */
 
   async onBusquedaNombre(nombre) {
-    // console.log(nombre);
-    this.arrTerrazasPorNombre = await this.terrazasService.getTerrazasPorNombre(nombre);
+    if (nombre) {
+      const result = await this.terrazasService.getTerrazasPorNombre(nombre);
+      this.arrTerrazasPorNombre = result;
+    } else {
+      this.arrTerrazasPorNombre = [];
+    }
   };
 
   onSelectNombre(terraza) {
@@ -73,7 +77,6 @@ export class HomeComponent implements OnInit {
         latitude: this.posicionActualLat,
         longitude: this.posicionActualLng
       }
-      // console.log(item);
       arrBusqueda.push(item);
       localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
       this.router.navigate(['/detalle', terraza.id_terraza]);
@@ -91,7 +94,6 @@ export class HomeComponent implements OnInit {
   }
 
   onChangeBarrio($event) {
-    // console.log($event.target.value);
     if (this.checkUbicacion()) {
       let arrBusqueda = [];
       let item = {
@@ -110,7 +112,6 @@ export class HomeComponent implements OnInit {
   onKeypressCalle($event) { };
 
   onChange($event) {
-    // console.log($event.checked);
     if ($event.checked) {
       navigator.geolocation.getCurrentPosition(position => {
         this.posicionActualLat = position.coords.latitude;
@@ -119,23 +120,42 @@ export class HomeComponent implements OnInit {
     }
   };
 
-  onSubmitBusquedaAvanzada() {
-    if (this.checkUbicacion()) {
-      let arrBusqueda = [];
-      this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
-      this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
-      arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
-      localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
-      this.router.navigate(['/busqueda']);
+  async onSubmitBusquedaAvanzada() {
+    if (!this.fomularioBusquedaAvanzada.value.calle && !this.fomularioBusquedaAvanzada.value.barrio && !this.fomularioBusquedaAvanzada.value.cercaDeMi) {
+      this.alertaBusqeudaNoValida();
+    } else if (this.fomularioBusquedaAvanzada.value.calle) {
+      const existeCalle = await this.terrazasService.getCalle(this.fomularioBusquedaAvanzada.value.calle)
+      if (existeCalle.length == 0) {
+        this.alertaBusqeudaNoValida();
+      } else {
+        if (this.checkUbicacion()) {
+          let arrBusqueda = [];
+          this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
+          this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
+          arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
+          localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+          this.router.navigate(['/busqueda']);
+        } else {
+          this.alertaNoUbicacion();
+        }
+      }
     } else {
-      this.alertaNoUbicacion();
+      if (this.checkUbicacion()) {
+        let arrBusqueda = [];
+        this.fomularioBusquedaAvanzada.value.latitude = this.posicionActualLat;
+        this.fomularioBusquedaAvanzada.value.longitude = this.posicionActualLng;
+        arrBusqueda.push(this.fomularioBusquedaAvanzada.value);
+        localStorage.setItem("dTerraceo", JSON.stringify(arrBusqueda));
+        this.router.navigate(['/busqueda']);
+      } else {
+        this.alertaNoUbicacion();
+      }
     }
   };
 
   /*
   *HELPERS
   */
-
   checkUbicacion() {
     if (this.posicionActualLat == undefined || this.posicionActualLat == undefined) {
       return false;
@@ -151,6 +171,14 @@ export class HomeComponent implements OnInit {
       text: 'Para el correcto funcionamiento, es necesario poder acceder a la ubicación del dispositivo',
     });
     this.router.navigate(['/home']);
+  };
+
+  alertaBusqeudaNoValida() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Busqueda no válida',
+      text: 'No hemos localizado terrazas para su búsqueda. Por favor, inténtelo de nuevo.',
+    });
   };
 
 }
