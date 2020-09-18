@@ -146,6 +146,8 @@ export class DetalleComponent implements OnInit {
   async onClikAddComment() {
     if (this.token) {
       const { value: text } = await Swal.fire({
+        imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+        imageAlt: 'DTerraceo logo',
         input: 'textarea',
         inputPlaceholder: 'Escribe tu comentario aquí...',
         inputAttributes: {
@@ -180,7 +182,8 @@ export class DetalleComponent implements OnInit {
       }
     })
     Toast.fire({
-      icon: 'error',
+      imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+      imageAlt: 'DTerraceo logo',
       title: `<h4>${msg}</h4>`
     });
   }

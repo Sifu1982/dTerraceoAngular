@@ -66,7 +66,8 @@ export class AppComponent {
     })
 
     Toast.fire({
-      icon: 'success',
+      imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+      imageAlt: 'DTerraceo logo',
       title: '<h4>Sesión cerrada correctamente.</h4>'
     });
   }

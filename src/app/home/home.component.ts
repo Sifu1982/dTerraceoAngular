@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TerrazasService } from '../terrazas.service';
 import { Terraza } from '../models/terraza.model';
-import { Router } from '@angular/router';
+import { Router, UrlHandlingStrategy } from '@angular/router';
 import Swal from 'sweetalert2';
 
 
@@ -166,18 +166,23 @@ export class HomeComponent implements OnInit {
 
   alertaNoUbicacion() {
     Swal.fire({
-      icon: 'error',
+      // icon: 'error',
       title: 'Ubicación no detectada',
       text: 'Para el correcto funcionamiento, es necesario poder acceder a la ubicación del dispositivo',
+      imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+      // imageWidth: 400,
+      // imageHeight: 200,
+      imageAlt: 'DTerraceo logo'
     });
     this.router.navigate(['/home']);
   };
 
   alertaBusqeudaNoValida() {
     Swal.fire({
-      icon: 'warning',
       title: 'Busqueda no válida',
       text: 'No hemos localizado terrazas para su búsqueda. Por favor, inténtelo de nuevo.',
+      imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+      imageAlt: 'DTerraceo logo'
     });
   };
 

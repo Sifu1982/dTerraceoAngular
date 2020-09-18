@@ -52,7 +52,8 @@ export class RegistroComponent implements OnInit {
       })
 
       Toast.fire({
-        icon: 'success',
+        imageUrl: '../../assets/dTerraceo.logo_white.jpg',
+        imageAlt: 'DTerraceo logo',
         title: '<h4>Usuario registrado corectamente.</h4>'
       });
 
