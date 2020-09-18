@@ -1,23 +1,35 @@
-<!-- Card Bootstrap que se itera, card-group para que todas tengan el mismo tamaño -->
-<h2 class="text-center mb-5">{{barrio}}</h2>
-<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
-    <div class="col card-group mb-3" *ngFor="let terraza of terrazas">
-        <div class="card">
-            <a [routerLink]="['/detalle',terraza?.id_terraza]">
-                <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
-            </a>
-            <div class="card-body">
-                <h6 class="card-title">{{terraza?.rotulo}}</h6>
-                <p class="card-text">{{terraza?.desc_clase}} {{terraza?.desc_nombre}} {{terraza?.nom_terraza}}
-                    {{terraza?.num_terraza}}</p>
-            </div>
-            <div class="row card-footer">
-                <div class="col-12">
-                    <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
-                        target="blank" class="btn btn-block btn-danger">¡Llévame allí!</a>
-                </div>
-                <div class="col-12 text-center pt-2">
-                    <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}} m.</small>
+<div class="row justify-content-center">
+    <div class="col-11 mt-4 mb-4">
+        <!-- Card Bootstrap que se itera, card-group para que todas tengan el mismo tamaño -->
+        <h2 class="text-center mb-5">{{barrio}}</h2>
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
+            <div class="col card-group mb-3" *ngFor="let terraza of terrazas">
+                <div class="card">
+                    <figure>
+                        <a [routerLink]="['/detalle',terraza?.id_terraza]" class="colorGris">
+                            <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
+                            <figcaption class="text-center">
+                                <i class="far fa-hand-point-up pr-2"></i> Toca la
+                                foto para más info
+                            </figcaption>
+                        </a>
+                    </figure>
+                    <div class="card-body text-center">
+                        <h5 class="card-title colorLogo">{{terraza?.rotulo}}</h5>
+                        <p class="card-text colorGris">{{terraza?.desc_clase}} {{terraza?.desc_nombre}}
+                            {{terraza?.nom_terraza}}
+                            {{terraza?.num_terraza}}</p>
+                    </div>
+                    <div class="row card-footer">
+                        <div class="col-12">
+                            <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
+                                target="blank" class="btn btn-block btn-danger"><i
+                                    class="fas fa-map-marked-alt mr-2"></i>¡Llévame allí!</a>
+                        </div>
+                        <div class="col-12 text-center pt-2">
+                            <small class="text-muted">Distancia a tu posición: {{terraza?.distancia}} m.</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
