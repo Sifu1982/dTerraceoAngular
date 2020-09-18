@@ -2,6 +2,15 @@
     color: black;
 }
 
+h2 {
+    color: #FA573A;
+    font-size: clamp(19px, 5vw, 35px);
+}
+
+.colorOro {
+    color: rgb(199, 199, 9);
+}
+
 .colorLogo {
     color: #FA573A;
 }
@@ -12,5 +21,18 @@
 
 .colorGris:hover {
     color: #FA573A;
-    ;
+}
+
+.puntuaciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #FA573A;
+    width: 70px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

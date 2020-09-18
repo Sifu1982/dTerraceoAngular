@@ -1,16 +1,19 @@
 <div class="row justify-content-center">
     <div class="col-11 mt-4 mb-4">
-        <!-- Card Bootstrap que se itera, card-group para que todas tengan el mismo tamaño -->
-        <h2 class="text-center mb-5">{{barrio}}</h2>
+        <h2 class="text-center mb-5"><i class="fas fa-archway mr-2"></i>{{barrio}}</h2>
         <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
+            <!-- Card Bootstrap que se itera, card-group para que todas tengan el mismo tamaño -->
             <div class="col card-group mb-3" *ngFor="let terraza of terrazas">
                 <div class="card">
                     <figure>
                         <a [routerLink]="['/detalle',terraza?.id_terraza]" class="colorGris">
                             <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
+                            <div class="puntuaciones" *ngIf="aparece">
+                                <span class="mx-2">{{terraza.puntuacionMedia | number:'1.0-1'}}</span> <i
+                                    class="fas fa-star colorOro"></i>
+                            </div>
                             <figcaption class="text-center">
-                                <i class="far fa-hand-point-up pr-2"></i> Toca la
-                                foto para más info
+                                <i class="far fa-hand-point-up pr-2"></i> Toca la foto para más info
                             </figcaption>
                         </a>
                     </figure>
