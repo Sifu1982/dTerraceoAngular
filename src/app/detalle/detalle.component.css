@@ -1,17 +1,13 @@
 .colorLogo {
-    background-color: #FA573A;
+    color: #FA573A;
 }
 
 .colorOro {
     color: rgb(199, 199, 9);
 }
 
-.colorSilver {
-    color: #FA573A;
-}
-
 .textSize {
-    font-size: clamp(10px, 3.5vw, 16px);
+    font-size: clamp(10px, 3.5vw, 18px);
 }
 
 .card {
@@ -82,3 +78,51 @@ agm-map {
     height: 195px;
     padding: .75rem;
 }
+
+/*Slider*/
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {
+    background: silver;
+    height: 2px;
+}
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
+    background: orange;
+} */
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
+    /* width: 8px;
+    height: 16px;
+    top: auto; */
+    /* to remove the default positioning */
+    /* bottom: 0; */
+    background-color: #FA573A;
+    /* border-top-left-radius: 3px;
+    border-top-right-radius: 3px; */
+}
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+} */
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-bubble {
+    bottom: 14px;
+} */
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-limit {
+    font-weight: bold;
+    color: orange;
+} */
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+} */
+
+/* ::ng-deep .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: orange;
+} */

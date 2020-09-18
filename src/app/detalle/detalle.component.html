@@ -5,7 +5,7 @@
             <div class="card col-12 col-md-6">
                 <div class="card-header m-1 mt-4">
                     <div class="row">
-                        <div class="col-12 colorSilver">
+                        <div class="col-12 colorLogo">
                             <h2 class="card-title text-center textSize">{{terraza?.rotulo}}</h2>
                         </div>
                         <div class="col-12 py-3">
@@ -27,8 +27,11 @@
                         </div>
                         <!-- slider de puntuaciones -->
                         <div class="col-8">
-                            <ng5-slider [(value)]="value" [options]="options" (userChange)="onCambioSliderPuntuacion()">
-                            </ng5-slider>
+                            <div class="custom-slider">
+                                <ng5-slider [(value)]="value" [options]="options"
+                                    (userChange)="onCambioSliderPuntuacion()">
+                                </ng5-slider>
+                            </div>
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@
             <div class="card col-12 col-md-6">
                 <!-- Llévame allí -->
                 <div class="card-header row m-1 mt-4">
-                    <div class="col-12">
+                    <div class="col-12 pt-5">
                         <a [href]="'https://www.google.com/maps/dir/'+lat+','+lng+'/'+terraza?.coordenada_x_local+','+terraza?.coordenada_y_local"
                             target="blank" class="btn btn-block btn-danger"><i class="fas fa-map-marked-alt mr-2"></i>
                             ¡Llévame allí!</a>
