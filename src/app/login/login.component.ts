@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     const response = await this.usuariosService.login(this.formulario.value);
-    console.log(response);
     if (response['SUCCESS']) {
       sessionStorage.setItem('token', response['token']);
 

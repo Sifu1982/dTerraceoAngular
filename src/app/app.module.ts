@@ -26,6 +26,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { environment } from './../environments/environment';
 import { Ng5SliderModule } from 'ng5-slider';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AvatarModule } from 'ngx-avatar';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     }),
     GoogleMapsModule,
     Ng5SliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,10 +15,12 @@ export class AppComponent {
   desLogin: Boolean;
   userLogged: Boolean;
   idUsuario: String;
+  username: string;
 
   constructor(private router: Router) {
     this.desHome = true;
     this.userLogged = false;
+    this.username = 'User';
   }
   ngOnInit() {
     //Desactivar el botón home en  "/home" y el botón login en "/login"
@@ -42,7 +44,8 @@ export class AppComponent {
           const decodedToken = jwt.decodeToken(token);
           this.idUsuario = decodedToken.userId
           // console.log('idUsuario', this.idUsuario);
-
+          this.username = decodedToken.username;
+          // console.log(this.username);
         }
       }
     });

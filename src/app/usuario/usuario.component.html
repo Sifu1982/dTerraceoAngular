@@ -1,7 +1,9 @@
 <div class="container align-items-center justify-content-center">
     <div class="usuario col-12">
         <div class="text-white row align-items-center justify-content-between p-3">
-            <p>Nombre usuario:</p>
+            <ngx-avatar [githubId]="username" [name]="username" bgColor="crimson" [round]="false" cornerRadius="5"
+                data-toggle="tooltip" data-placement="auto" [title]="username">
+            </ngx-avatar>
         </div>
     </div>
     <div class="favoritos col-12">

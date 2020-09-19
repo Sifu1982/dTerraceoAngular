@@ -14,9 +14,11 @@ export class UsuarioComponent implements OnInit {
   arrFavoritos: Terraza[];
   lat: number;
   lng: number;
+  username: string;
 
   constructor(private favoritosService: FavoritosService, private terrazasService: TerrazasService) {
     this.arrFavoritos = [];
+    this.username = 'User';
   }
 
   async ngOnInit() {
@@ -31,6 +33,7 @@ export class UsuarioComponent implements OnInit {
       const jwt = new JwtHelperService();
       const decodedToken = jwt.decodeToken(token);
       const idUsuario = decodedToken.userId;
+      this.username = decodedToken.username;
       try {
         const favoritos = await this.favoritosService.getByUserId(idUsuario);
         const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));

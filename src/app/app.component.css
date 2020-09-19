@@ -15,11 +15,19 @@ header {
 
 .btn {
     padding: .25rem .5rem;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
 .icon {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.high-res {
+    display: inline;
+}
+
+.low-res {
+    display: none;
 }
 
 footer {
@@ -36,5 +44,12 @@ footer {
     }
     .btn {
         font-size: 1rem;
+        padding: .15rem .3rem;
+    }
+    .high-res {
+        display: none;
+    }
+    .low-res {
+        display: inline;
     }
 }
