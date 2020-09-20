@@ -4,12 +4,33 @@ import { TerrazasService } from '../terrazas.service';
 import { Terraza } from '../models/terraza.model';
 import { Router, UrlHandlingStrategy } from '@angular/router';
 import Swal from 'sweetalert2';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('left', [
+      state('7', style({
+        'transform': 'translateX(-100%)',
+        'opacity': 0,
+      })),
+      transition('* => 7', [
+        animate(1000)
+      ])
+    ]),
+    trigger('right', [
+      state('7', style({
+        'transform': 'translateX(100%)',
+        'opacity': 0,
+      })),
+      transition('* => 7', [
+        animate('1s 1s')
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -24,6 +45,8 @@ export class HomeComponent implements OnInit {
   posicionActualLng: number;
 
   fondoOscuro: Boolean;
+
+  surpriseCount: number;
 
   constructor(private terrazasService: TerrazasService, private router: Router) {
 
@@ -43,6 +66,7 @@ export class HomeComponent implements OnInit {
     this.arrTerrazasPorNombre = [];
     this.keywordNombre = 'rotulo';
     this.fondoOscuro = false;
+    this.surpriseCount = 0;
   }
 
   async ngOnInit() {
@@ -185,5 +209,15 @@ export class HomeComponent implements OnInit {
       imageAlt: 'DTerraceo logo'
     });
   };
+
+  surpriseMe() {
+    this.surpriseCount += 1;
+    console.log(this.surpriseCount);
+    if (this.surpriseCount == 7) {
+      setTimeout(() => {
+        this.router.navigate(['/surprise']);
+      }, 2000)
+    }
+  }
 
 }

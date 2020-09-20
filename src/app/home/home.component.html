@@ -1,7 +1,8 @@
-<div class="mt-3">
+<div class="mt-3" [@left]="surpriseCount">
     <h1>Tu buscador de terrazas de Madrid</h1>
 </div>
-<div id="wrapperBuscador" class="row flex-column justify-content-center align-items-center mb-5">
+<div id="wrapperBuscador" class="row flex-column justify-content-center align-items-center mb-5"
+    [@right]="surpriseCount">
     <div id="buscador" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 p-0">
         <div class="crimson">
             <div class="tomato">
@@ -69,13 +70,13 @@
             </mat-accordion>
         </div>
     </div>
-    <div class="arrowDiv">
+    <div class="arrowDiv" (click)="surpriseMe()">
         <i class="fas fa-angle-double-down arrow animate__animated animate__shakeY"></i>
     </div>
 
 </div>
 
-<div id="carousel" class="wrapper row justify-content-center mb-5">
+<div id="carousel" class="wrapper row justify-content-center mb-5" [@left]="surpriseCount">
     <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
         <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" interval="5000" [keyboard]="true"
             [pauseOnHover]="true" [wrap]="true" [activeId]="'slideOne'">

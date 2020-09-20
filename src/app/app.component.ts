@@ -22,6 +22,7 @@ export class AppComponent {
     this.userLogged = false;
     this.username = 'User';
   }
+
   ngOnInit() {
     //Desactivar el botón home en  "/home" y el botón login en "/login"
     this.router.events.subscribe((val) => {

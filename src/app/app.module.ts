@@ -27,6 +27,7 @@ import { environment } from './../environments/environment';
 import { Ng5SliderModule } from 'ng5-slider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AvatarModule } from 'ngx-avatar';
+import { EasterEggComponent } from './easter-egg/easter-egg.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AvatarModule } from 'ngx-avatar';
     UsuarioComponent,
     AvisoLegalComponent,
     ProteccionDeDatosComponent,
-    RegistroComponent
+    RegistroComponent,
+    EasterEggComponent
   ],
   imports: [
     BrowserModule,
