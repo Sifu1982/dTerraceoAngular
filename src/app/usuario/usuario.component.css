@@ -1,10 +1,25 @@
-.container {
-    min-height: 75vh;
-    padding-right: 0;
-    padding-left: 0;
+.wraper {
     color: black;
 }
 
 h4 {
+    color: #FA573A;
+}
+
+h2 {
+    color: #FA573A;
+    text-transform: uppercase;
+    font-size: clamp(19px, 5vw, 35px);
+}
+
+.colorLogo {
+    color: #FA573A;
+}
+
+.colorGris {
+    color: rgb(173, 172, 172);
+}
+
+.colorGris:hover {
     color: #FA573A;
 }

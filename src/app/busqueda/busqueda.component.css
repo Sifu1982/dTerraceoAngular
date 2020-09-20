@@ -1,3 +1,38 @@
 .wraper {
     color: black;
 }
+
+h2 {
+    color: #FA573A;
+    font-size: clamp(19px, 5vw, 35px);
+}
+
+.colorOro {
+    color: rgb(199, 199, 9);
+}
+
+.colorLogo {
+    color: #FA573A;
+}
+
+.colorGris {
+    color: rgb(173, 172, 172);
+}
+
+.colorGris:hover {
+    color: #FA573A;
+}
+
+.puntuaciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 70px;
+    height: 40px;
+    border-radius: 10%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

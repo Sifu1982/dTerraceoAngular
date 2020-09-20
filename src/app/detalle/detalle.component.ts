@@ -108,7 +108,6 @@ export class DetalleComponent implements OnInit {
         this.calcularPuntuacionMedia();
       } catch (err) {
         console.log(err);
-
       }
     });
   }
