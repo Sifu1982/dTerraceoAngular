@@ -14,10 +14,6 @@
                 <button type="button" class="btn btn-outline-danger mr-2" [routerLink]="['login']"
                     *ngIf="desLogin && !userLogged" data-toggle="tooltip" data-placement="auto"
                     title="Ir a Login">Login</button>
-                <!-- <button type="button" class="btn btn-outline-danger mr-2" [routerLink]="['usuario', idUsuario]"
-                    *ngIf="userLogged" data-toggle="tooltip" data-placement="auto" title="Perfil de usuario">
-                    <i class="fas fa-user-circle icon"></i>
-                </button> -->
                 <button type="button" class="btn btn-outline-danger mr-2" *ngIf="userLogged" data-toggle="tooltip"
                     data-placement="auto" title="Logout" (click)="onClick()">
                     <i class="fas fa-sign-out-alt icon"></i>
@@ -29,8 +25,8 @@
                 </button>
                 <button class="low-res btn btn-outline-danger mr-2" [routerLink]="['usuario', idUsuario]"
                     *ngIf="userLogged" data-toggle="tooltip" data-placement="auto" title="Perfil de usuario">
-                    <ngx-avatar class="my-avatar" [githubId]="username" [name]="username" bgColor="crimson"
-                        [round]="false" cornerRadius="5" size="25"></ngx-avatar>
+                    <ngx-avatar class="my-avatar" [name]="username" bgColor="crimson" [round]="false" cornerRadius="5"
+                        size="25"></ngx-avatar>
                 </button>
             </div>
         </nav>

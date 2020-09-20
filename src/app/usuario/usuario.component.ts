@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Terraza } from '../models/terraza.model';
 import { FavoritosService } from '../favoritos.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TerrazasService } from '../terrazas.service';
+
 
 @Component({
   selector: 'app-usuario',
@@ -45,5 +46,4 @@ export class UsuarioComponent implements OnInit {
       }
     }
   }
-
 }

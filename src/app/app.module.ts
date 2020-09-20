@@ -29,7 +29,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { AvatarModule } from 'ngx-avatar';
 import { EasterEggComponent } from './easter-egg/easter-egg.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

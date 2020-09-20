@@ -1,18 +1,18 @@
 <div class="container align-items-center justify-content-center">
     <div class="usuario col-12">
-        <div class="text-white row align-items-center justify-content-between p-3">
+        <div class="text-white row align-items-center justify-content-center p-3">
             <ngx-avatar [githubId]="username" [name]="username" bgColor="crimson" [round]="false" cornerRadius="5"
-                data-toggle="tooltip" data-placement="auto" [title]="username">
+                data-toggle="tooltip" data-placement="auto" [title]="username" size="100">
             </ngx-avatar>
         </div>
     </div>
-    <div class="favoritos col-12">
+    <div class="favoritos col-12 text-center">
         <div>
             <h4>Tus terrazas favoritas</h4>
         </div>
-        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
             <div class="col card-group mb-3" *ngFor="let terraza of arrFavoritos">
-                <div class="card">
+                <div class="card h-100 w-100">
                     <a [routerLink]="['/detalle',terraza?.id_terraza]">
                         <img [src]=terraza.streetView class="card-img-top" [alt]=terraza.rotulo>
                     </a>
