@@ -68,8 +68,9 @@ i {
 
 .arrowDiv {
     position: absolute;
-    bottom: 50px;
-    right: 49%;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .arrow {
