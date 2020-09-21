@@ -5,9 +5,8 @@
                 data-toggle="tooltip" data-placement="auto" [title]="username" size="100">
             </ngx-avatar>
         </div>
-        <h2 class="text-center mb-5">
-            <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color mr-2">
-                favorite</mat-icon>Tus terrazas favoritas:
+        <h2 class="text-center mb-5 d-flex justify-content-center align-items-center">
+            <i class="fas fa-heart mr-2"></i>Tus terrazas favoritas:
         </h2>
         <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2  row-cols-lg-3 row-cols-xl-4 wraper">
             <div class="col card-group mb-3" *ngFor="let terraza of arrFavoritos">

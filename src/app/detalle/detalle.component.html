@@ -10,9 +10,17 @@
                                     class="fas fa-glass-cheers mr-2"></i>{{terraza?.rotulo}}</h2>
                         </div>
                         <div class="col-12 py-3">
-                            <p class="text-right pr-4"> Puntuación media:
-                                <span class="mx-2"> {{puntuacionMedia | number:'1.0-1'}}</span> <i
-                                    class="fas fa-star colorOro"></i></p>
+                            <p *ngIf="puntuacionMedia!=0; then content else elseBlock">Esto se
+                                ignora</p>
+                            <ng-template #content>
+                                <p class="text-right pr-4"> Puntuación media:
+                                    <span class="mx-2"> {{puntuacionMedia | number:'1.0-1'}}</span> <i
+                                        class="fas fa-star colorOro"></i></p>
+                            </ng-template>
+                            <ng-template #elseBlock>
+                                <p class="text-right pr-4 negrita">¡Sé el primero en puntuar!</p>
+                            </ng-template>
+
                         </div>
                     </div>
                     <!-- Icono favoritos -->

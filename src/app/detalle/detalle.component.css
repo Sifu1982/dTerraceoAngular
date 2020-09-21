@@ -79,6 +79,10 @@ agm-map {
     padding: .75rem;
 }
 
+.negrita {
+    font-weight: bold;
+}
+
 /*CSS slider*/
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-bar {

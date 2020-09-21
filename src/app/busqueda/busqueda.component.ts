@@ -12,8 +12,6 @@ export class BusquedaComponent implements OnInit {
 
   terrazas: Terraza[];
 
-  puntuacionMedia: number;
-
 
   // Variables para la geolocalización
   lat: number;
@@ -21,15 +19,11 @@ export class BusquedaComponent implements OnInit {
 
   barrio: string;
 
-  aparece: boolean;
 
   constructor(
     private terrazasService: TerrazasService,
     private puntuacionesService: PuntuacionesService
-  ) {
-    this.puntuacionMedia = 0;
-    this.aparece = true;
-  }
+  ) { }
 
   async ngOnInit() {
     // Conseguir la posición del usuario
@@ -38,6 +32,7 @@ export class BusquedaComponent implements OnInit {
       this.lng = position.coords.longitude;
     });
 
+
     // this.terrazas = this.terrazasService.getArrayTerrazasCarousel();
     const objLocalStorage = JSON.parse(localStorage.getItem("dTerraceo"));
     try {
@@ -45,6 +40,10 @@ export class BusquedaComponent implements OnInit {
 
       for (const terraza of this.terrazas) {
         terraza.puntuacionMedia = await this.calcularPuntuacionMedia(terraza.id_terraza);
+
+        if (terraza.puntuacionMedia) {
+          terraza.aparece = true;
+        }
       }
     } catch (err) {
       console.log(err);
