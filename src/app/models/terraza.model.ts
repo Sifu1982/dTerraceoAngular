@@ -30,5 +30,6 @@ export class Terraza {
     distancia: number;
     googlePlacesData: { telefono: string, imagenes: string[] };
     puntuacionMedia: number;
+    aparece: boolean;
 
 }
