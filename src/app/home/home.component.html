@@ -18,8 +18,7 @@
                 </ng-template>
 
                 <ng-template #notFoundTemplate let-notFound>
-                    <!-- <div [innerHTML]="notFound"></div> -->
-                    <!-- <div>No localizo ese nombre</div> -->
+
                 </ng-template>
             </div>
         </div>
@@ -38,7 +37,6 @@
                                 class="btn btn-danger btn-block btn-lg d-flex align-items-center justify-content-between border border-dark"
                                 (click)="onClickBusquedaAvanzada()">
                                 Búsqueda avanzada<i class="fas fa-search ml-2"></i>
-                                <!-- <i class="fas fa-angle-double-down"></i>-->
                             </button>
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -52,12 +50,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><span>Introduce una calle</span> </label>
+                            <label><span>Nombre o parte de la calle</span> </label>
                             <input type="text" class="form-control" formControlName="calle"
-                                placeholder="Nombre de la calle..." (keypress)="onKeypressCalle($event)">
-
-                            <!-- [attr.disabled]="(fomularioBusquedaAvanzada.controls.barrio.value!=''?'disabled':null)"" -->
-
+                                placeholder="Nombre o parte de la calle..." (keypress)="onKeypressCalle($event)">
                         </div>
                         <div class="form-group">
                             <mat-slide-toggle color="warn" formControlName="cercaDeMi" (change)="onChange($event)">

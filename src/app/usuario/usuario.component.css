@@ -1,3 +1,7 @@
+.contenido {
+    min-height: 75vh;
+}
+
 .wraper {
     color: black;
 }

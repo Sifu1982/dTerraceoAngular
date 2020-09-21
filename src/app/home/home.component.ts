@@ -190,12 +190,9 @@ export class HomeComponent implements OnInit {
 
   alertaNoUbicacion() {
     Swal.fire({
-      // icon: 'error',
       title: 'Ubicación no detectada',
       text: 'Para el correcto funcionamiento, es necesario poder acceder a la ubicación del dispositivo',
       imageUrl: '../../assets/dTerraceo.logo_white.jpg',
-      // imageWidth: 400,
-      // imageHeight: 200,
       imageAlt: 'DTerraceo logo'
     });
     this.router.navigate(['/home']);
